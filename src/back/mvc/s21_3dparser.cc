@@ -1,5 +1,15 @@
 #include "s21_3dparser.h"
 
+void s21_add_elem_double(double* array, unsigned int& count, double elem){
+    count++;                           
+    array[count-1] = elem;         
+}
+
+void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem){
+    count++;                           
+    array[count-1] = elem;  
+}
+
 int s21_countInit(Shape* shape, const char* file) {
   FILE* fp = fopen(file, "r");
   if (!fp) {
@@ -129,7 +139,7 @@ void s21_addV(Shape* shape, char* s) {
   int shift;
   for (int i = 0; i < 3; ++i) {
     sscanf(s, "%lf%n", &coord, &shift);
-    S21_ADD_ELEM(shape->vertexes, shape->countVertexes, coord);
+    s21_add_elem_double(shape->vertexes, shape->countVertexes, coord);
     s += shift;
   }
 }
@@ -138,14 +148,14 @@ void s21_addF(Shape* shape, char* s) {
   FrameElement elem, firstElem;
   if (shape->vertexes != NULL) {
     if (s21_readPolygon(&firstElem, &s, shape)) {
-      S21_ADD_ELEM(shape->lines, shape->countLines, firstElem.v - 1);
+      s21_add_elem_int(shape->lines, shape->countLines, firstElem.v - 1);
     }
     while (s21_readPolygon(&elem, &s, shape)) {
-      S21_ADD_ELEM(shape->lines, shape->countLines, elem.v - 1);
-      S21_ADD_ELEM(shape->lines, shape->countLines, elem.v - 1);
+      s21_add_elem_int(shape->lines, shape->countLines, elem.v - 1);
+      s21_add_elem_int(shape->lines, shape->countLines, elem.v - 1);
     }
     if (firstElem.mask) {
-      S21_ADD_ELEM(shape->lines, shape->countLines, firstElem.v - 1);
+      s21_add_elem_int(shape->lines, shape->countLines, firstElem.v - 1);
     }
   } else {
     if (s21_readPolygon(&firstElem, &s, shape)) {

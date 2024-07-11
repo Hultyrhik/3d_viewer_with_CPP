@@ -2,13 +2,13 @@
 #define SRC_3DPARSER_H
 #define _GNU_SOURCE
 
-#include <math.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/types.h>
-#include <time.h>
+// #include <math.h>
+// #include <stddef.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+// #include <sys/types.h>
+// #include <time.h>
 
 #ifndef M_PI
 /**
@@ -25,11 +25,18 @@
  * @param count Счетчик элементов в массиве
  * @param elem Добавляемый элемент
  */
-#define S21_ADD_ELEM(array, count, elem) \
-  do {                                   \
-    (count)++;                           \
-    (array)[(count)-1] = (elem);         \
-  } while (0)
+void s21_add_elem_double(double* array, unsigned int& count, double elem);
+
+/**
+ * @brief Добавление элемента в массив с перераспределением памяти
+ *
+ * @param array Указатель на массив
+ * @param count Счетчик элементов в массиве
+ * @param elem Добавляемый элемент
+ */
+void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem);
+                                
+
 
 /**
  * @brief Исправление отрицательных целых чисел в массиве ребер
