@@ -10,6 +10,12 @@ void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem){
     array[count-1] = elem;  
 }
 
+void s21_check_and_fix(long long int& elem, int flag, unsigned int countV) {                              
+    if (flag == 1 && countV != 0) {       
+      elem += countV + 1;                 
+    }                                         
+}
+
 int s21_countInit(Shape* shape, const char* file) {
   FILE* fp = fopen(file, "r");
   if (!fp) {
@@ -175,27 +181,27 @@ int s21_readPolygon(FrameElement* elem, char** s, Shape* shape) {
   elem->mask = 0;
 
   if (sscanf(*s, "%lld%n", &elem->v, &shift) == 1) {
-    S21_CHECK_AND_FIX(elem->v, shape->fflag, (shape->countVertexes / 3));
+    s21_check_and_fix(elem->v, shape->fflag, (shape->countVertexes / 3));
     elem->mask = 4;
     *s += shift;
   }
 
   if (elem->mask == 4 &&
       sscanf(*s, "/%lld/%lld%n", &elem->vt, &elem->vn, &shift) == 2) {
-    S21_CHECK_AND_FIX(elem->vt, shape->fflag, (shape->countVertexes / 3));
-    S21_CHECK_AND_FIX(elem->vn, shape->fflag, (shape->countVertexes / 3));
+    s21_check_and_fix(elem->vt, shape->fflag, (shape->countVertexes / 3));
+    s21_check_and_fix(elem->vn, shape->fflag, (shape->countVertexes / 3));
     *s += shift;
     elem->mask = 7;
   }
 
   if (elem->mask == 4 && sscanf(*s, "//%lld%n", &elem->vn, &shift) == 1) {
-    S21_CHECK_AND_FIX(elem->vn, shape->fflag, (shape->countVertexes / 3));
+    s21_check_and_fix(elem->vn, shape->fflag, (shape->countVertexes / 3));
     *s += shift;
     elem->mask = 5;
   }
 
   if (elem->mask == 4 && sscanf(*s, "/%lld%n", &elem->vt, &shift) == 1) {
-    S21_CHECK_AND_FIX(elem->vt, shape->fflag, (shape->countVertexes / 3));
+    s21_check_and_fix(elem->vt, shape->fflag, (shape->countVertexes / 3));
     *s += shift;
     elem->mask = 6;
   }

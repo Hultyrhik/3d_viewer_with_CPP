@@ -45,12 +45,7 @@ void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem);
  * @param countLines Счетчик элементов в массиве
  * @param countV Счетчик вершин в фигуре
  */
-#define S21_CHECK_AND_FIX(elem, flag, countV) \
-  do {                                        \
-    if ((flag) == 1 && (countV) != 0) {       \
-      (elem) += (countV + 1);                 \
-    }                                         \
-  } while (0)
+void s21_check_and_fix(long long int& elem, int flag, unsigned int countV);
 
 #define MAX_NAME_LENGTH 100
 #define COORDS 3
