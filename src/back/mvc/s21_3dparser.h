@@ -1,14 +1,6 @@
 #ifndef SRC_3DPARSER_H
 #define SRC_3DPARSER_H
-#define _GNU_SOURCE
 
-// #include <math.h>
-// #include <stddef.h>
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// #include <sys/types.h>
-// #include <time.h>
 
 #ifndef M_PI
 /**
