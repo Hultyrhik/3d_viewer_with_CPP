@@ -14,7 +14,7 @@ int Model::s21_countInit() {
     return 1;
   }
   char s[200]{};
-  this->s21_zeroingShape(this->shape_);
+  this->s21_zeroingShape();
   while (fgets(s, 200, fp) && s[0]) {
     char c = 0;
     int shift = 0;
@@ -31,21 +31,25 @@ int Model::s21_countInit() {
 
 }
 
-void Model::s21_zeroingShape(Shape* shape) {
-  std::memset(shape->modelName, 0, sizeof(shape->modelName));
-  std::memset(shape->fileName, 0, sizeof(shape->fileName));
-  shape->countLines = 0;
-  shape->countL = 0;
-  shape->countVertexes = 0;
-  shape->countV = 0;
-  shape->lines = NULL;
-  shape->vertexes = NULL;
-  shape->fflag = 0;
-  shape->scale = 1;
+Model::~Model (){
+  this->s21_clearShape();
+}
+
+void Model::s21_zeroingShape() {
+  std::memset(this->shape_->modelName, 0, sizeof(this->shape_->modelName));
+  std::memset(this->shape_->fileName, 0, sizeof(this->shape_->fileName));
+  this->shape_->countLines = 0;
+  this->shape_->countL = 0;
+  this->shape_->countVertexes = 0;
+  this->shape_->countV = 0;
+  this->shape_->lines = nullptr;
+  this->shape_->vertexes = nullptr;
+  this->shape_->fflag = 0;
+  this->shape_->scale = 1;
   for (int i = 0; i < 3; ++i) {
-    shape->angles[i] = 0;
-    shape->shifts[i] = 0;
-    shape->absolute_translation[i] = 0;
+    this->shape_->angles[i] = 0;
+    this->shape_->shifts[i] = 0;
+    this->shape_->absolute_translation[i] = 0;
   }
 }
 
@@ -148,8 +152,8 @@ void s21_extractFileName(const char* filePath, char* fileName) {
 }
 
 void Model::s21_clearShape() {
-  if (this->shape_->vertexes != NULL) delete[] this->shape_->vertexes;
-  if (this->shape_->lines != NULL) delete[] this->shape_->lines;
+  if (this->shape_->vertexes != nullptr) delete[] this->shape_->vertexes;
+  if (this->shape_->lines != nullptr) delete[] this->shape_->lines;
 }
 
 void matrix(double matrix[COORDS][COORDS], double angulus_x, double angulus_y,
@@ -260,7 +264,7 @@ void s21_addV(Shape* shape, char* s) {
 
 void s21_addF(Shape* shape, char* s) {
   FrameElement elem, firstElem;
-  if (shape->vertexes != NULL) {
+  if (shape->vertexes != nullptr) {
     if (s21_readPolygon(&firstElem, &s, shape)) {
       s21_add_elem_int(shape->lines, shape->countLines, firstElem.v - 1);
     }

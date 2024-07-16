@@ -1,4 +1,4 @@
-GCC = gcc
+GCC = g++
 CFLAGS = -Wall -Werror -Wextra
 
 FLAG_GCOV = --coverage
@@ -8,9 +8,9 @@ TESTFILE = back/test/3DViewer-v1.0
 
 PROJECT_NAME= 3DViewer-v1.0
 
-SRC_FILES = $(wildcard back/s21*.c)
-HEADER_FILES = $(wildcard back/s21*.h)
-TEST_FILES = $(wildcard back/test/s21*.c)
+SRC_FILES = $(wildcard back/mvc/s21*.cc)
+HEADER_FILES = $(wildcard back/mvc/s21*.h)
+TEST_FILES = $(wildcard back/test/s21*.cc)
 
 LEAK_PROGRAMM = valgrind
 

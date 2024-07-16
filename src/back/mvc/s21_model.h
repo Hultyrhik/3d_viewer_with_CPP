@@ -15,10 +15,11 @@ private:
 
 public:
     Model(Shape* ptr, std::string path) : shape_{ptr}, path_of_file_{path}  {}
+    ~Model();
 
     int s21_countInit();
 
-    void s21_zeroingShape(Shape* shape);
+    void s21_zeroingShape();
 
     int s21_allocateShape();
 
@@ -27,6 +28,7 @@ public:
     void s21_centring();
 
     void s21_clearShape();
+
 }; // class Model
 
 

@@ -18,7 +18,7 @@ void Display_window::initializeGL() {}
 void Display_window::paintGL() { renderOpenGLScene(); }
 
 void Display_window::renderOpenGLScene() {
-  if (shape->vertexes != NULL && shape->lines != NULL &&
+  if (shape->vertexes != nullptr && shape->lines != nullptr &&
       is_ready_to_draw == true) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
