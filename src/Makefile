@@ -42,22 +42,17 @@ clean: uninstall
 
 install:
 	@echo "\033[34m===>    Installation has started     <===\033[0m"
-	@cd $(WORK_DIR) && exec qmake $(WORK_DIR).pro > /dev/null 2>&1
-	@cd $(WORK_DIR) && exec make > /dev/null 2>&1  &  \
-	pid=$$!; \
-	while ps -p $$pid > /dev/null; do \
-		echo -n "."; \
-		sleep 0.5; \
-	done
+	cd $(WORK_DIR) && exec qmake $(WORK_DIR).pro
+	cd $(WORK_DIR) && exec make 
 	@echo ""
 	@echo "\033[34m===>    Installation has ended       <===\033[0m"
-	@cd $(WORK_DIR) && exec make clean > /dev/null 2>&1
-	@cd $(WORK_DIR) && exec rm -rf Makefile > /dev/null 2>&1
-	@cd $(WORK_DIR) && exec rm -rf .qmake.stash > /dev/null 2>&1
-	@if [ ! -d "$(INST_DIR)" ]; then \
+	cd $(WORK_DIR) && exec make clean > /dev/null 2>&1
+	cd $(WORK_DIR) && exec rm -rf Makefile > /dev/null 2>&1
+	cd $(WORK_DIR) && exec rm -rf .qmake.stash > /dev/null 2>&1
+	if [ ! -d "$(INST_DIR)" ]; then \
 		mkdir $(INST_DIR); \
 	fi
-	@cd $(WORK_DIR) && exec mv frontend 3DViewer-v1.0/s21_3Dviewer_v1  > /dev/null 2>&1
+	cd $(WORK_DIR) && exec mv frontend 3DViewer-v1.0/s21_3Dviewer_v1  > /dev/null 2>&1
 
 run:
 	cd $(INST_DIR) &&	./s21_3Dviewer_v1

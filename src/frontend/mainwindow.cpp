@@ -166,6 +166,7 @@ void MainWindow::read_obj_file() {
   s21::Model model(ui->display_window->shape, ui->display_window->my_data.path_to_file);
   s21::Controller controller(&model);
   s21::View view(&controller);
+  ui->display_window->view = &view;
   view.init_controller();
 
   if (ui->display_window->shape->countV < 1 ||
@@ -296,7 +297,7 @@ void MainWindow::on_zDial_sliderMoved(int position) {
 void MainWindow::on_lineEdit_rotation_x_valueChanged(int value) {
   double wAngl = static_cast<double>(value) -
                  ui->display_window->my_data.rotation_display[0];
-  figure_rotation(ui->display_window->shape, wAngl, 0, 0);
+  s21::figure_rotation(ui->display_window->shape, wAngl, 0, 0);
   ui->display_window->my_data.rotation_display[0] = static_cast<double>(value);
   ui->display_window->update();
 
@@ -306,7 +307,7 @@ void MainWindow::on_lineEdit_rotation_x_valueChanged(int value) {
 void MainWindow::on_lineEdit_rotation_y_valueChanged(int value) {
   double wAngl = static_cast<double>(value) -
                  ui->display_window->my_data.rotation_display[1];
-  figure_rotation(ui->display_window->shape, 0, wAngl, 0);
+  s21::figure_rotation(ui->display_window->shape, 0, wAngl, 0);
   ui->display_window->my_data.rotation_display[1] = static_cast<double>(value);
   ui->display_window->update();
 
@@ -316,7 +317,7 @@ void MainWindow::on_lineEdit_rotation_y_valueChanged(int value) {
 void MainWindow::on_lineEdit_rotation_z_valueChanged(int value) {
   double wAngl = static_cast<double>(value) -
                  ui->display_window->my_data.rotation_display[2];
-  figure_rotation(ui->display_window->shape, 0, 0, wAngl);
+  s21::figure_rotation(ui->display_window->shape, 0, 0, wAngl);
   ui->display_window->my_data.rotation_display[2] = static_cast<double>(value);
   ui->display_window->update();
 

@@ -49,7 +49,7 @@ typedef struct {
 /**
  * @brief Перечислимый тип для координатных осей
  */
-typedef enum Axis_ { AXIS_X, AXIS_Y, AXIS_Z } Axis;
+typedef enum Axis_ { AXIS_X, AXIS_Y, AXIS_Z } s21_Axis;
 
 
 

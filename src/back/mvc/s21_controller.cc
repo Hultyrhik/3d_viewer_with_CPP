@@ -4,7 +4,7 @@
 
 namespace s21 {
     void Controller::init_model(){
-        this->model_->s21_clearShape();
+        this->model_->s21_clearModelShape();
         this->model_->s21_zeroingShape();
         this->model_->s21_initShape();
     }

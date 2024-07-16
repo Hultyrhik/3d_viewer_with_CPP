@@ -27,10 +27,11 @@ public:
 
     void s21_centring();
 
-    void s21_clearShape();
+    void s21_clearModelShape();
 
 }; // class Model
 
+ void s21_clearShape(Shape* shape);
 
 void s21_add_elem_double(double* array, unsigned int& count, double elem);
 
@@ -50,9 +51,9 @@ int s21_readPolygon(FrameElement* elem, char** s, Shape* shape);
 
 int s21_setScale(Shape* shape, double scale);
 
-int s21_shifting(Shape* shape, double coord, Axis axis);
+int s21_shifting(Shape* shape, double coord, s21_Axis axis);
 
-int s21_shifting_my(Shape* shape, double coord, Axis axis);
+int s21_shifting_my(Shape* shape, double coord, s21_Axis axis);
 
 void matrix(double matrix[COORDS][COORDS], double angulus_x, double angulus_y,
             double angulus_z) ;

@@ -28,11 +28,11 @@ int Model::s21_countInit() {
       s21_addF( this->shape_, s + 1);
     }
   }
-
+  return 0;
 }
 
 Model::~Model (){
-  this->s21_clearShape();
+  this->s21_clearModelShape();
 }
 
 void Model::s21_zeroingShape() {
@@ -151,9 +151,14 @@ void s21_extractFileName(const char* filePath, char* fileName) {
   }
 }
 
-void Model::s21_clearShape() {
+void Model::s21_clearModelShape() {
   if (this->shape_->vertexes != nullptr) delete[] this->shape_->vertexes;
   if (this->shape_->lines != nullptr) delete[] this->shape_->lines;
+}
+
+void s21_clearShape(Shape* shape) {
+  if (shape->vertexes != nullptr) delete[] shape->vertexes;
+  if (shape->lines != nullptr) delete[] shape->lines;
 }
 
 void matrix(double matrix[COORDS][COORDS], double angulus_x, double angulus_y,
@@ -331,7 +336,7 @@ int s21_setScale(Shape* shape, double scale) {
   return 0;
 }
 
-int s21_shifting(Shape* shape, double coord, Axis axis) {
+int s21_shifting(Shape* shape, double coord, s21_Axis axis) {
   if (!shape) return 1;
   double shift = coord - shape->shifts[axis];
   for (unsigned i = 0; i < shape->countVertexes; i += 3)
@@ -340,7 +345,7 @@ int s21_shifting(Shape* shape, double coord, Axis axis) {
   return 0;
 }
 
-int s21_shifting_my(Shape* shape, double coord, Axis axis) {
+int s21_shifting_my(Shape* shape, double coord, s21_Axis axis) {
   if (!shape) return 1;
 
   for (unsigned i = 0; i < shape->countVertexes; i += 3)

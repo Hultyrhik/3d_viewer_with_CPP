@@ -1,5 +1,12 @@
 #include "display_window.h"
 
+#include <cmath>
+
+#include "../back/mvc/s21_3dparser.h"
+#include "../back/mvc/s21_model.h"
+#include "../back/mvc/s21_controller.h"
+#include "../back/mvc/s21_view.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -7,8 +14,7 @@ class MainWindow;
 QT_END_NAMESPACE
 
 Display_window::Display_window(QWidget* parent) : QOpenGLWidget(parent) {
-  shape = static_cast<Shape*>(calloc(1, sizeof(Shape)));
-  s21_zeroingShape(shape);
+  shape = new Shape;
   is_ready_to_draw = false;
   glwidth = 771, glheight = 771;
 }
@@ -26,14 +32,14 @@ void Display_window::renderOpenGLScene() {
     glLoadIdentity();
     glEnable(GL_DEPTH_TEST);
 
-    figure_rotation(shape, my_data.rotation[0], my_data.rotation[1],
+    s21::figure_rotation(shape, my_data.rotation[0], my_data.rotation[1],
                     my_data.rotation[2]);
 
-    s21_setScale(shape, (my_data.scale[0] / 10));
+    s21::s21_setScale(shape, (my_data.scale[0] / 10));
 
-    s21_shifting(shape, (my_data.translation[0] / 10), AXIS_X);
-    s21_shifting(shape, (my_data.translation[1] / 10), AXIS_Y);
-    s21_shifting(shape, (my_data.translation[2] / 10), AXIS_Z);
+    s21::s21_shifting(shape, (my_data.translation[0] / 10), AXIS_X);
+    s21::s21_shifting(shape, (my_data.translation[1] / 10), AXIS_Y);
+    s21::s21_shifting(shape, (my_data.translation[2] / 10), AXIS_Z);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -43,7 +49,7 @@ void Display_window::renderOpenGLScene() {
       float winHeight = 1;
       float winWidth = 1;
       float fov = 60.0 * M_PI / 180;  // 60 угол в градусах
-      float heapHeight = winHeight / (2 * tan(fov / 2));
+      float heapHeight = winHeight / (2 * std::tan(fov / 2));
       glFrustum(-winWidth, winWidth, -winHeight, winHeight, heapHeight, 100);
       // far можно задать любым, лишь бы все умещалось.
       glMatrixMode(GL_MODELVIEW);
@@ -133,7 +139,7 @@ void Display_window::saveGIF() {
 
 Display_window::~Display_window() {
   if (shape) {
-    s21_clearShape(shape);
-    free(shape);
+    s21::s21_clearShape(shape);
+    delete shape;
   }
 }
