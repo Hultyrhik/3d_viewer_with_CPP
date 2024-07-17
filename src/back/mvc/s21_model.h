@@ -14,8 +14,10 @@ private:
 
 
 public:
-    Model(Shape* ptr, std::string path) : shape_{ptr}, path_of_file_{path}  {}
+    Model(Shape* ptr) : shape_{ptr}  {}
     ~Model();
+
+    void set_path_of_file(std::string path);
 
     int s21_countInit();
 

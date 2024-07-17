@@ -86,6 +86,8 @@ class Display_window : public QOpenGLWidget {
    */
   explicit Display_window(QWidget *parent = nullptr);
 
+  s21::Model* model;
+  s21::Controller* controller;
   s21::View* view;
   Shape *shape;             /**< The shape object. */
   Shape *init_shape;        /**< The initial shape object. */

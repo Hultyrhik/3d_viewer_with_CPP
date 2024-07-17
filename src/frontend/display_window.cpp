@@ -15,6 +15,9 @@ QT_END_NAMESPACE
 
 Display_window::Display_window(QWidget* parent) : QOpenGLWidget(parent) {
   shape = new Shape;
+  this->model = new s21::Model(shape);
+  this->controller = new s21::Controller(this->model);
+  this->view = new s21::View(this->controller);
   is_ready_to_draw = false;
   glwidth = 771, glheight = 771;
 }
@@ -138,8 +141,19 @@ void Display_window::saveGIF() {
 }
 
 Display_window::~Display_window() {
+  s21::s21_clearShape(shape);
+  
   if (shape) {
-    s21::s21_clearShape(shape);
     delete shape;
+  }
+  if (view) {
+      delete view;
+  }
+
+  if (controller) {
+    delete controller;
+  }
+  if (model) {
+    delete model;
   }
 }

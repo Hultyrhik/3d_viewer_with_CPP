@@ -162,12 +162,9 @@ void MainWindow::read_obj_file() {
   ui->textBrowser_name_of_file->setText(
       QString::fromUtf8(ui->display_window->my_data.name_of_file.c_str()));
 
-  // MVC pattern
-  s21::Model model(ui->display_window->shape, ui->display_window->my_data.path_to_file);
-  s21::Controller controller(&model);
-  s21::View view(&controller);
-  ui->display_window->view = &view;
-  view.init_controller();
+  ui->display_window->model->set_path_of_file( ui->display_window->my_data.path_to_file);
+
+  ui->display_window->view->init_controller();
 
   if (ui->display_window->shape->countV < 1 ||
       ui->display_window->shape->countVertexes < 1 ||

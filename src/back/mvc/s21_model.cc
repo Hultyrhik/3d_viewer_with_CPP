@@ -32,7 +32,10 @@ int Model::s21_countInit() {
 }
 
 Model::~Model (){
-  this->s21_clearModelShape();
+}
+
+void Model::set_path_of_file(std::string path){
+  this->path_of_file_ = path;
 }
 
 void Model::s21_zeroingShape() {
