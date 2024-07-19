@@ -139,7 +139,7 @@ void MainWindow::read_obj_file() {
   if (ui->display_window->shape->countV < 1 ||
       ui->display_window->shape->countVertexes < 1 ||
       ui->display_window->shape->countL < 1 || status != 0) {
-    QMessageBox::critical(this, tr("Error"), tr("Incorrect .obj file"));
+    MessageError();
     ui->display_window->is_ready_to_draw = false;
     ui->display_window->update();
   } else {
@@ -217,6 +217,37 @@ void MainWindow::write_to_ui() {
       ui->display_window->my_data.translation[1]);
   ui->lineEdit_translation_z->setValue(
       ui->display_window->my_data.translation[2]);
+}
+
+void MainWindow::MessageError() {
+  QMessageBox msgBox;
+  msgBox.setIcon(QMessageBox::Critical);
+  msgBox.setText(QObject::tr("Fail .obj file to shape"));
+  msgBox.setWindowTitle(QObject::tr("Error"));
+
+  msgBox.setStyleSheet(
+      "QMessageBox {"
+      "   background-color: #f0f0f0;"
+      "   color: #333333;"
+      "   border: 2px solid #dcdcdc;"
+      "   border-radius: 15px;"
+      "}"
+      "QMessageBox QLabel {"
+      "   color: #333333;"
+      "}"
+      "QMessageBox QPushButton {"
+      "   background-color: #e6e6e6;"
+      "   color: #333333;"
+      "   border: none;"
+      "   padding: 5px 10px;"
+      "   border-radius: 5px;"
+      "   margin: 5px;"
+      "}"
+      "QMessageBox QPushButton:hover {"
+      "   background-color: #dcdcdc;"
+      "}");
+
+  msgBox.exec();
 }
 
 void MainWindow::set_parameters_to_default() {

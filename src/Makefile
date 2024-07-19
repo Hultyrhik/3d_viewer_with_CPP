@@ -53,19 +53,19 @@ valgrind: test
 install:
 	@./cat.sh "\033[34m===>    $(PROJECT) installation has started\033[0m" 10
 	@chmod 0700 /run/user/1000/
-	rm -rf $(PROJECT) > /dev/null 2>&1
-	mkdir $(PROJECT) > /dev/null 2>&1
-	qmake $(PROJECT).pro -o $(PROJECT) 2>&1
-	cd $(PROJECT) && make & \
+	@rm -rf $(PROJECT) > /dev/null 2>&1
+	@mkdir $(PROJECT) > /dev/null 2>&1
+	@qmake $(PROJECT).pro -o $(PROJECT) > /dev/null 2>&1
+	@cd $(PROJECT) && make > /dev/null 2>&1 & \
 	pid=$$!; \
 	while ps -p $$pid > /dev/null; do \
 		echo -n "\033[34m.\033[0m"; \
 		sleep 0.5; \
 	done
 	echo ""
-	./cat.sh "\033[34m===>    Installation has ended             \033[0m" 10
-	chmod +x ./$(PROJECT)/$(PROJECT) > /dev/null 2>&1
-	rm -f ${HOME}/$(PROJECT) && cp ./$(PROJECT)/$(PROJECT) ${HOME}/$(PROJECT)
+	@./cat.sh "\033[34m===>    Installation has ended             \033[0m" 10
+	@chmod +x ./$(PROJECT)/$(PROJECT) > /dev/null 2>&1
+	@rm -f ${HOME}/$(PROJECT) && cp ./$(PROJECT)/$(PROJECT) ${HOME}/$(PROJECT)
 
 run:
 	${HOME}/$(PROJECT)

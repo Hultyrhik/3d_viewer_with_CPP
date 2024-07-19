@@ -44,6 +44,7 @@ class MainWindow : public QMainWindow {
 
  private:
   void connectButtons();
+  void MessageError();
   void writeSettings();
   void readSettings();
   void read_obj_file();
