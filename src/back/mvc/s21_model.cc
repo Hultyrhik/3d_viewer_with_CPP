@@ -170,8 +170,8 @@ void s21_extractFileName(const char* filePath, char* fileName) {
 }
 
 void Model::s21_clearModelShape() {
-  delete[] this->shape_->vertexes;
-  delete[] this->shape_->lines;
+  if (this->shape_->vertexes != nullptr) delete[] this->shape_->vertexes;
+  if (this->shape_->vertexes != nullptr) delete[] this->shape_->lines;
 }
 
 void s21_clearShape(Shape* shape) {

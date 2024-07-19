@@ -28,6 +28,7 @@ all: gcov_report install dvi run
 
 tests: clean
 	g++ -Wall -g -pthread $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) $(TEST_FILES) -lgtest_main  -lgtest -lpthread -o test
+	./test
 
 main: clean
 	g++ $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) main.cc  -o main
@@ -54,10 +55,10 @@ install:
 	if [ ! -d "$(INST_DIR)" ]; then \
 		mkdir $(INST_DIR); \
 	fi
-	cd $(WORK_DIR) && exec mv frontend 3DViewer-v1.0/s21_3Dviewer_v1  > /dev/null 2>&1
+	cd $(WORK_DIR) && exec mv frontend 3DViewer-v2.0/s21_3Dviewer_v2  > /dev/null 2>&1
 
 run:
-	cd $(INST_DIR) &&	./s21_3Dviewer_v1
+	cd $(INST_DIR) &&	./s21_3Dviewer_v2
 
 uninstall:
 	if [ -e "manual/animation.gif" ]; then \
