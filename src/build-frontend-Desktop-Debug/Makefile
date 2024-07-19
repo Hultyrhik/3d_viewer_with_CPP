@@ -167,7 +167,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../back/mvc/model_to_save/gif_builder.h \
 		../back/mvc/model_to_save/screen_builder.h \
 		../back/mvc/controller_projection/controller_projection.h \
-		../back/mvc/model_projection/projection_strategy.h ../back/mvc/s21_model.cc \
+		../back/mvc/model_projection/projection_strategy.h \
+		../back/mvc/factory_adding/element_adder.h ../back/mvc/s21_model.cc \
 		../back/mvc/s21_controller.cc \
 		../back/mvc/s21_view.cc \
 		../frontend/display_window.cpp \
@@ -362,7 +363,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../back/mvc/s21_3dparser.h ../back/mvc/s21_model.h ../back/mvc/s21_controller.h ../back/mvc/s21_view.h ../frontend/display_window.h ../frontend/mainwindow.h ../gif/gif.hpp ../back/mvc/controller_to_save/gif_controller.h ../back/mvc/controller_to_save/screen_controller.h ../back/mvc/model_to_save/director.h ../back/mvc/model_to_save/path_builder.h ../back/mvc/model_to_save/gif_builder.h ../back/mvc/model_to_save/screen_builder.h ../back/mvc/controller_projection/controller_projection.h ../back/mvc/model_projection/projection_strategy.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../back/mvc/s21_3dparser.h ../back/mvc/s21_model.h ../back/mvc/s21_controller.h ../back/mvc/s21_view.h ../frontend/display_window.h ../frontend/mainwindow.h ../gif/gif.hpp ../back/mvc/controller_to_save/gif_controller.h ../back/mvc/controller_to_save/screen_controller.h ../back/mvc/model_to_save/director.h ../back/mvc/model_to_save/path_builder.h ../back/mvc/model_to_save/gif_builder.h ../back/mvc/model_to_save/screen_builder.h ../back/mvc/controller_projection/controller_projection.h ../back/mvc/model_projection/projection_strategy.h ../back/mvc/factory_adding/element_adder.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../back/mvc/s21_model.cc ../back/mvc/s21_controller.cc ../back/mvc/s21_view.cc ../frontend/display_window.cpp ../frontend/main.cpp ../frontend/save_settings.cpp ../frontend/mainwindow.cpp ../gif/gif.cpp ../back/mvc/controller_to_save/gif_controller.cc ../back/mvc/controller_to_save/screen_controller.cc $(DISTDIR)/
 	$(COPY_FILE) --parents ../frontend/mainwindow.ui $(DISTDIR)/
 
@@ -404,6 +405,7 @@ moc_display_window.cpp: ../frontend/display_window.h \
 		../back/mvc/s21_view.h \
 		../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../gif/gif.hpp \
 		../frontend/mainwindow.h \
 		../back/mvc/controller_to_save/gif_controller.h \
@@ -441,6 +443,7 @@ ui_mainwindow.h: ../frontend/mainwindow.ui \
 		../back/mvc/s21_view.h \
 		../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../gif/gif.hpp \
 		../frontend/mainwindow.h \
 		../back/mvc/controller_to_save/gif_controller.h \
@@ -462,17 +465,20 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 s21_model.o: ../back/mvc/s21_model.cc ../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../back/mvc/s21_3dparser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o s21_model.o ../back/mvc/s21_model.cc
 
 s21_controller.o: ../back/mvc/s21_controller.cc ../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../back/mvc/s21_3dparser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o s21_controller.o ../back/mvc/s21_controller.cc
 
 s21_view.o: ../back/mvc/s21_view.cc ../back/mvc/s21_view.h \
 		../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../back/mvc/s21_3dparser.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o s21_view.o ../back/mvc/s21_view.cc
 
@@ -481,6 +487,7 @@ display_window.o: ../frontend/display_window.cpp ../frontend/display_window.h \
 		../back/mvc/s21_view.h \
 		../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../gif/gif.hpp \
 		../frontend/mainwindow.h \
 		../back/mvc/controller_to_save/gif_controller.h \
@@ -507,6 +514,7 @@ save_settings.o: ../frontend/save_settings.cpp ../frontend/display_window.h \
 		../back/mvc/s21_view.h \
 		../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../gif/gif.hpp \
 		../frontend/mainwindow.h \
 		../back/mvc/controller_to_save/gif_controller.h \
@@ -528,6 +536,7 @@ mainwindow.o: ../frontend/mainwindow.cpp ../frontend/mainwindow.h \
 		../back/mvc/s21_3dparser.h \
 		../back/mvc/s21_controller.h \
 		../back/mvc/s21_model.h \
+		../back/mvc/factory_adding/element_adder.h \
 		../back/mvc/s21_view.h \
 		../frontend/display_window.h \
 		../gif/gif.hpp \

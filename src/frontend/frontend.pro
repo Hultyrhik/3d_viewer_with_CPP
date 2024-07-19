@@ -38,6 +38,7 @@ HEADERS += \
     ../back/mvc/model_to_save/screen_builder.h \
     ../back/mvc/controller_projection/controller_projection.h \
     ../back/mvc/model_projection/projection_strategy.h \
+    ../back/mvc/factory_adding/element_adder.h \
 
 FORMS += \
     mainwindow.ui

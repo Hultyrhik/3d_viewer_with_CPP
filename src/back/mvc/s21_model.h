@@ -3,6 +3,7 @@
 
 #include <string>
 
+#include "factory_adding/element_adder.h"
 #include "s21_3dparser.h"
 
 namespace s21 {
@@ -34,9 +35,9 @@ class Model {
 
 void s21_clearShape(Shape* shape);
 
-void s21_add_elem_double(double* array, unsigned int& count, double elem);
+// void s21_add_elem_double(double* array, unsigned int& count, double elem);
 
-void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem);
+// void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem);
 
 void s21_check_and_fix(long long int& elem, int flag, unsigned int countV);
 
