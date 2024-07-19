@@ -1,5 +1,5 @@
 GCC = g++
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++17 -g
 
 WORK_DIR=frontend
 INST_DIR=frontend/3DViewer-v2.0
@@ -30,12 +30,14 @@ tests: clean
 	g++ -Wall -g -pthread $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) $(TEST_FILES) -lgtest_main  -lgtest -lpthread -o test
 	./test
 
+main: clean
+	g++ $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) main.cc  -o main
 
 clean: uninstall
 	-rm -rf *.txt back/test/*.o back/test/*.gcno back/test/*.gcda back/test/*.c back/test/*.info
 	-rm -rf back/test/test_back_shape_test back/test/test_corrie_test
 	-rm -rf frontend/*.o frontend/ui_mainwindow.h frontend/*.stash frontend/Makefile
-	-rm -rf report
+	-rm -rf report main test
 	-rm -rf *.tar *.tgz *.conf ./a.out *.log
 	-rm -rf manual *test* s21_3dparser.o $(PROJECT_NAME)
 	-rm -rf frontend/build-frontend* frontend/3DViewer-v1.0

@@ -10,6 +10,7 @@ namespace s21 {
 int Model::s21_countInit() {
   FILE* fp = std::fopen(this->path_of_file_.c_str(), "r");
   if (!fp) {
+    std::fclose(fp);
     std::perror("Error opening file");
     return 1;
   }
@@ -28,6 +29,7 @@ int Model::s21_countInit() {
       s21_addF( this->shape_, s + 1);
     }
   }
+  std::fclose(fp);
   return 0;
 }
 
@@ -155,8 +157,8 @@ void s21_extractFileName(const char* filePath, char* fileName) {
 }
 
 void Model::s21_clearModelShape() {
-  if (this->shape_->vertexes != nullptr) delete[] this->shape_->vertexes;
-  if (this->shape_->lines != nullptr) delete[] this->shape_->lines;
+  delete[] this->shape_->vertexes;
+  delete[] this->shape_->lines;
 }
 
 void s21_clearShape(Shape* shape) {
