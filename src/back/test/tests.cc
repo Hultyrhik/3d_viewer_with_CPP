@@ -6,16 +6,19 @@
 #include "../mvc/s21_view.h"
 
 TEST(init_shape, test_init_cube) {
-        Shape cube;
+        Shape cube {};
         double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};       
         
-        std::string path = "../../obj/cube.obj";
+        std::string path = "obj/cube.obj";
 
         s21::Model model(&cube);
         s21::Controller controller(&model);
         s21::View view(&controller);
+                std::cout << "Before path" << std::endl;
         model.set_path_of_file(path);
+                std::cout << "Before init" << std::endl;
         int status = view.init_controller();
+                std::cout << "After init" << std::endl;
 
 
 
@@ -28,6 +31,8 @@ TEST(init_shape, test_init_cube) {
             EXPECT_NEAR(cube.vertexes[i],array[i], 1e-9);
         }
         
+        std::cout << "Before clear" << std::endl;
+
         model.s21_clearModelShape();
 
 }

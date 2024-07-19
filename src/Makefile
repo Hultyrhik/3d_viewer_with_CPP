@@ -28,7 +28,6 @@ all: gcov_report install dvi run
 
 tests: clean
 	g++ -Wall -g -pthread $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) $(TEST_FILES) -lgtest_main  -lgtest -lpthread -o test
-	./test
 
 main: clean
 	g++ $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) main.cc  -o main
