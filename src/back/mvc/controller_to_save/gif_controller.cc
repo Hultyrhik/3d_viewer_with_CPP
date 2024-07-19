@@ -7,11 +7,11 @@
 
 #include "../../../gif/gif.hpp"
 
-GIFController::GIFController(const QString& modelName, uint8_t* image,
+s21::GIFController::GIFController(const QString& modelName, uint8_t* image,
                              int width, int height)
     : modelName(modelName), image(image), width(width), height(height) {}
 
-void GIFController::saveGIF() {
+void s21::GIFController::saveGIF() {
   s21::Director director;
   s21::GIFBuilder gifBuilder(modelName);
 

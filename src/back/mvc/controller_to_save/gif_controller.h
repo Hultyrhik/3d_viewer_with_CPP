@@ -7,6 +7,7 @@
 #include "../model_to_save/director.h"
 #include "../model_to_save/gif_builder.h"
 
+namespace s21 {
 class GIFController {
  public:
   GIFController(const QString& modelName, uint8_t* image, int width,
@@ -19,5 +20,6 @@ class GIFController {
   int width;
   int height;
 };
+}  // namespace s21
 
 #endif  // GIFCONTROLLER_H

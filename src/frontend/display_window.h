@@ -92,10 +92,6 @@ class Display_window : public QOpenGLWidget {
   bool is_ready_to_draw;    /**< Flag indicating if it is the first launch. */
 
  public:
-  // /**
-  //  * @brief Slot for saving the GIF.
-  //  */
-  // void saveGIF();
   uint8_t image[771 * 771 * 4]; /**< The image buffer. */
   int glwidth, glheight; /**< The width and height of the OpenGL viewport. */
 

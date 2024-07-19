@@ -353,49 +353,23 @@ void MainWindow::on_lineEdit_scale_x_valueChanged(double arg1) {
   ui->display_window->update();
 }
 
-// void MainWindow::on_pushButton_make_gif_clicked() {
-//   std::thread gif_thread(&Display_window::saveGIF, ui->display_window);
-//   gif_thread.detach();
-// }
-
-// void MainWindow::on_pushButton_save_image_clicked() {
-//   // QString saveDirectory = "../../misc/imgs/";
-//   // QString fileType = ui->fileType->currentText();
-
-//   // QDir dir(saveDirectory);
-//   // if (!dir.exists()) {
-//   //   dir.mkpath(".");
-//   // }
-
-//   // QString fileName = saveDirectory + "/";
-//   // QTime date = QTime::currentTime();
-//   // fileName.append(date.toString("hh_mm_ss_"));
-//   // fileName.append(ui->display_window->my_data.name_of_model.c_str());
-//   // fileName.append(fileType);
-
-//   // QImage img = ui->display_window->grabFramebuffer();
-//   // img.save(fileName);
-// }
-
 void MainWindow::on_pushButton_save_image_clicked() {
   QString modelName = ui->display_window->my_data.name_of_model.c_str();
   QString fileType = ui->fileType->currentText();
   QImage img = ui->display_window->grabFramebuffer();
 
-  ScreenController imageController(modelName, fileType, img);
-  std::thread img_thread(&ScreenController::saveImage, imageController);
+  s21::ScreenController imageController(modelName, fileType, img);
+  std::thread img_thread(&s21::ScreenController::saveImage, imageController);
   img_thread.detach();
 }
 
 void MainWindow::on_pushButton_make_gif_clicked() {
   QString modelName = ui->display_window->my_data.name_of_model.c_str();
-  // QImage img = QImage(ui->display_window->image, ui->display_window->glwidth,
-  //                     ui->display_window->glheight, QImage::Format_ARGB32);
   int width = ui->display_window->glwidth;
   int height = ui->display_window->glheight;
 
-  GIFController gifController(modelName, ui->display_window->image, width, height);
-  std::thread gif_thread(&GIFController::saveGIF, gifController);
+  s21::GIFController gifController(modelName, ui->display_window->image, width, height);
+  std::thread gif_thread(&s21::GIFController::saveGIF, gifController);
   gif_thread.detach();
 }
 

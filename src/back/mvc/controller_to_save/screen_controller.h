@@ -7,6 +7,7 @@
 #include "../model_to_save/director.h"
 #include "../model_to_save/screen_builder.h"
 
+namespace s21 {
 class ScreenController {
  public:
   ScreenController(const QString& modelName, const QString& fileType,
@@ -18,5 +19,6 @@ class ScreenController {
   QString fileType;
   QImage image;
 };
+}  // namespace s21
 
 #endif  // SCREENCONTROLLER_H
