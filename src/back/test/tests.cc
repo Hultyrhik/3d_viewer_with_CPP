@@ -60,6 +60,91 @@ TEST(init_shape, test_init_tetrahedron) {
 }
 
 
+TEST(init_shape, test_init_invalid_file_format) {
+        Shape shape {};
+        std::string path = "obj/invalid.obj";
+
+        s21::Model model(&shape);
+        s21::Controller controller(&model);
+        s21::View view(&controller);
+
+        model.set_path_of_file(path);
+
+        int status = view.init_controller();
+
+        EXPECT_EQ(status, 1);
+        model.s21_clearModelShape();
+}
+
+TEST(init_shape, test_init_file_missing1) {
+        Shape shape {};
+        std::string path = "obj/file.obj";
+
+        s21::Model model(&shape);
+        s21::Controller controller(&model);
+        s21::View view(&controller);
+
+        model.set_path_of_file(path);
+
+        int status = view.init_controller();
+
+        EXPECT_EQ(status, 1);
+        model.s21_clearModelShape();
+}
+
+TEST(init_shape, test_init_file_missing2) {
+        Shape shape {};
+        std::string path = "file.txt";
+
+        s21::Model model(&shape);
+        s21::Controller controller(&model);
+        s21::View view(&controller);
+
+        model.set_path_of_file(path);
+
+        int status = view.init_controller();
+
+        EXPECT_EQ(status, 1);
+        model.s21_clearModelShape();
+}
+
+TEST(init_shape, test_init_empty_file) {
+        Shape shape {};
+        std::string path = "obj/empty.obj";
+
+        s21::Model model(&shape);
+        s21::Controller controller(&model);
+        s21::View view(&controller);
+
+        model.set_path_of_file(path);
+
+        int status = view.init_controller();
+
+        EXPECT_EQ(status, 1);
+        model.s21_clearModelShape();
+}
+
+TEST(init_shape, test_init_invalid_path) {
+        Shape shape {};
+        std::string path = "obj/b/../obj/lobg/cube.obj";
+
+        s21::Model model(&shape);
+        s21::Controller controller(&model);
+        s21::View view(&controller);
+
+        model.set_path_of_file(path);
+
+        int status = view.init_controller();
+
+        EXPECT_EQ(status, 1);
+        model.s21_clearModelShape();
+}
+
+
+
+
+
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
