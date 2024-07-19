@@ -1052,7 +1052,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <customwidget>
    <class>Display_window</class>
    <extends>QOpenGLWidget</extends>
-   <header>display_window.h</header>
+   <header>../frontend/display_window.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

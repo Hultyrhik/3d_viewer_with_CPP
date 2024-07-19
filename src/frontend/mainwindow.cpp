@@ -333,7 +333,8 @@ void MainWindow::on_pushButton_make_gif_clicked() {
   int width = ui->display_window->glwidth;
   int height = ui->display_window->glheight;
 
-  s21::GIFController gifController(modelName, ui->display_window->image, width, height);
+  s21::GIFController gifController(modelName, ui->display_window->image, width,
+                                   height);
   std::thread gif_thread(&s21::GIFController::saveGIF, gifController);
   gif_thread.detach();
 }

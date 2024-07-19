@@ -284,7 +284,8 @@ void s21_addV(Shape* shape, char* s) {
   s21::DoubleElementAdder double_adder;
   for (int i = 0; i < 3; ++i) {
     std::sscanf(s, "%lf%n", &coord, &shift);
-    double_adder.addElementToArray(shape->vertexes, shape->countVertexes, coord);
+    double_adder.addElementToArray(shape->vertexes, shape->countVertexes,
+                                   coord);
     s += shift;
   }
 }
@@ -378,16 +379,6 @@ int s21_shifting_my(Shape* shape, double coord, s21_Axis axis) {
 
   return 0;
 }
-
-// void s21_add_elem_double(double* array, unsigned int& count, double elem) {
-//   count++;
-//   array[count - 1] = elem;
-// }
-
-// void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem) {
-//   count++;
-//   array[count - 1] = elem;
-// }
 
 void s21_check_and_fix(long long int& elem, int flag, unsigned int countV) {
   if (flag == 1 && countV != 0) {

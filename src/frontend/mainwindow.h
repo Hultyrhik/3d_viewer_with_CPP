@@ -16,19 +16,16 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-// Declare the MainWindow class
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  // Constructor and destructor
   MainWindow(QWidget* parent = nullptr);
   ~MainWindow();
 
-  Ui::MainWindow* ui;  // Pointer to the MainWindow UI
+  Ui::MainWindow* ui;
 
  private slots:
-  // Slots for button clicks and value changes
   void on_pushButton_apply_changes_clicked();
   void on_pushButton_open_obj_file_clicked();
   void on_pushButton_make_gif_clicked();
@@ -46,7 +43,6 @@ class MainWindow : public QMainWindow {
   void on_lineEdit_scale_x_valueChanged(double arg1);
 
  private:
-  // Private member functions
   void connectButtons();
   void writeSettings();
   void readSettings();
@@ -57,11 +53,9 @@ class MainWindow : public QMainWindow {
   void closeEvent(QCloseEvent* event);
 
  protected:
-  // Protected member function
   void keyPressEvent(QKeyEvent* event) override;
 };
 
-// Function declarations
 void init_backgroud_color(double* array);
 void init_point_color(double* array);
 void init_line_color(double* array);

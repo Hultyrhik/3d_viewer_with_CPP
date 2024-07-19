@@ -35,10 +35,6 @@ class Model {
 
 void s21_clearShape(Shape* shape);
 
-// void s21_add_elem_double(double* array, unsigned int& count, double elem);
-
-// void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem);
-
 void s21_check_and_fix(long long int& elem, int flag, unsigned int countV);
 
 void s21_extractFileName(const char* filePath, char* fileName);
