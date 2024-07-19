@@ -164,11 +164,11 @@ void MainWindow::read_obj_file() {
 
   ui->display_window->model->set_path_of_file( ui->display_window->my_data.path_to_file);
 
-  ui->display_window->view->init_controller();
+  int status = ui->display_window->view->init_controller();
 
   if (ui->display_window->shape->countV < 1 ||
       ui->display_window->shape->countVertexes < 1 ||
-      ui->display_window->shape->countL < 1) {
+      ui->display_window->shape->countL < 1 || status != 0) {
     QMessageBox::critical(this, tr("Error"), tr("Incorrect .obj file"));
     ui->display_window->is_ready_to_draw = false;
     ui->display_window->update();
