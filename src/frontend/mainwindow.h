@@ -6,7 +6,8 @@
 #include <QMainWindow>
 #include <QSpinBox>
 
-#include "./../gif/gif.hpp"
+#include "../back/mvc/controller_to_save/gif_controller.h"
+#include "../back/mvc/controller_to_save/screen_controller.h"
 
 // Include necessary headers
 QT_BEGIN_NAMESPACE

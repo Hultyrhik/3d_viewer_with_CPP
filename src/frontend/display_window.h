@@ -91,13 +91,13 @@ class Display_window : public QOpenGLWidget {
   Settings_storage my_data; /**< The settings storage object. */
   bool is_ready_to_draw;    /**< Flag indicating if it is the first launch. */
 
- public slots:
-  /**
-   * @brief Slot for saving the GIF.
-   */
-  void saveGIF();
-
- private slots:
+ public:
+  // /**
+  //  * @brief Slot for saving the GIF.
+  //  */
+  // void saveGIF();
+  uint8_t image[771 * 771 * 4]; /**< The image buffer. */
+  int glwidth, glheight; /**< The width and height of the OpenGL viewport. */
 
  protected:
   /**
@@ -121,10 +121,6 @@ class Display_window : public QOpenGLWidget {
    * @param h The height of the viewport.
    */
   void resizeGL(int w, int h) override;
-
- private:
-  uint8_t image[771 * 771 * 4]; /**< The image buffer. */
-  int glwidth, glheight; /**< The width and height of the OpenGL viewport. */
 
   /**
    * @brief Destructor for the Display_window class.

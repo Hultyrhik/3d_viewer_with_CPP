@@ -113,32 +113,32 @@ void Display_window::renderOpenGLScene() {
 
 void Display_window::resizeGL(int w, int h) { glViewport(0, 0, w, h); }
 
-void Display_window::saveGIF() {
-  QString saveDirectory = "../../../misc/gif/";
-  QString fileType = ".gif";
+// void Display_window::saveGIF() {
+//   QString saveDirectory = "../../misc/gifs/";
+//   QString fileType = ".gif";
 
-  QDir dir(saveDirectory);
-  if (!dir.exists()) {
-    dir.mkpath(".");
-  }
-  QString fileName = saveDirectory + "/";
-  fileName.append(my_data.name_of_model.c_str());
-  fileName.append(fileType);
-  int delay = 100;
-  GifWriter g;
-  GifBegin(&g, fileName.toStdString().c_str(), 640, 480, delay);
+//   QDir dir(saveDirectory);
+//   if (!dir.exists()) {
+//     dir.mkpath(".");
+//   }
+//   QString fileName = saveDirectory + "/";
+//   fileName.append(my_data.name_of_model.c_str());
+//   fileName.append(fileType);
+//   int delay = 100;
+//   GifWriter g;
+//   GifBegin(&g, fileName.toStdString().c_str(), 640, 480, delay);
 
-  for (int timer = 0; timer <= 5000; timer += delay) {
-    QImage tempImage(image, glwidth, glheight, QImage::Format_ARGB32);
-    QRect sourceRect((glwidth - 640) / 2, (glheight - 480) / 2, 640, 480);
-    tempImage = tempImage.copy(sourceRect);
-    GifWriteFrame(&g, tempImage.bits(), 640, 480, 1);
-    std::this_thread::sleep_for(std::chrono::milliseconds(delay));
-  }
+//   for (int timer = 0; timer <= 5000; timer += delay) {
+//     QImage tempImage(image, glwidth, glheight, QImage::Format_ARGB32);
+//     QRect sourceRect((glwidth - 640) / 2, (glheight - 480) / 2, 640, 480);
+//     tempImage = tempImage.copy(sourceRect);
+//     GifWriteFrame(&g, tempImage.bits(), 640, 480, 1);
+//     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+//   }
 
-  qDebug() << "Gif is ready";
-  GifEnd(&g);
-}
+//   qDebug() << "Gif is ready";
+//   GifEnd(&g);
+// }
 
 Display_window::~Display_window() {
   s21::s21_clearShape(shape);

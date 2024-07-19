@@ -19,6 +19,8 @@ SOURCES += \
     save_settings.cpp \
     mainwindow.cpp \
     ../gif/gif.cpp \
+    ../back/mvc/controller_to_save/gif_controller.cc \
+    ../back/mvc/controller_to_save/screen_controller.cc \
 
 HEADERS += \
     ../back/mvc/s21_3dparser.h \
@@ -28,6 +30,12 @@ HEADERS += \
     display_window.h \
     mainwindow.h \ 
     ../gif/gif.hpp \
+    ../back/mvc/controller_to_save/gif_controller.h \
+    ../back/mvc/controller_to_save/screen_controller.h \
+    ../back/mvc/model_to_save/director.h \
+    ../back/mvc/model_to_save/path_builder.h \
+    ../back/mvc/model_to_save/gif_builder.h \
+    ../back/mvc/model_to_save/screen_builder.h \
 
 FORMS += \
     mainwindow.ui
