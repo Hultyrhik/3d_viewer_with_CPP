@@ -2,6 +2,7 @@
 
 #include <cmath>
 
+#include "../back/mvc/controller_projection/controller_projection.h"
 #include "../back/mvc/s21_3dparser.h"
 #include "../back/mvc/s21_controller.h"
 #include "../back/mvc/s21_model.h"
@@ -46,25 +47,12 @@ void Display_window::renderOpenGLScene() {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    if (my_data.projection_type == CENTRAL) {
-      //  winWidth и winHeight мы задавали также через минимальные и
-      //  максимальные значения
-      float winHeight = 1;
-      float winWidth = 1;
-      float fov = 60.0 * M_PI / 180;  // 60 угол в градусах
-      float heapHeight = winHeight / (2 * std::tan(fov / 2));
-      glFrustum(-winWidth, winWidth, -winHeight, winHeight, heapHeight, 100);
-      // far можно задать любым, лишь бы все умещалось.
-      glMatrixMode(GL_MODELVIEW);
-      glLoadIdentity();
-      glTranslated(0, 0, -heapHeight * 3);
-    }
-    if (my_data.projection_type == PARALLEL) {
-      glOrtho(-1, 1, -1, 1, -10, 10);
-    }
+
+    s21::ControllerProjection controller;
+    controller.setProjectionStrategy(my_data.projection_type);
 
     glClearColor(my_data.background_color[0], my_data.background_color[1],
-                 my_data.background_color[2], 1.0f);  // background color
+                 my_data.background_color[2], 1.0f);
 
     glClear(GL_COLOR_BUFFER_BIT);
 

@@ -132,6 +132,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../frontend/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -164,7 +165,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../back/mvc/model_to_save/director.h \
 		../back/mvc/model_to_save/path_builder.h \
 		../back/mvc/model_to_save/gif_builder.h \
-		../back/mvc/model_to_save/screen_builder.h ../back/mvc/s21_model.cc \
+		../back/mvc/model_to_save/screen_builder.h \
+		../back/mvc/controller_projection/controller_projection.h \
+		../back/mvc/model_projection/projection_strategy.h ../back/mvc/s21_model.cc \
 		../back/mvc/s21_controller.cc \
 		../back/mvc/s21_view.cc \
 		../frontend/display_window.cpp \
@@ -242,6 +245,7 @@ Makefile: ../frontend/frontend.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -321,6 +325,7 @@ Makefile: ../frontend/frontend.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -357,7 +362,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../back/mvc/s21_3dparser.h ../back/mvc/s21_model.h ../back/mvc/s21_controller.h ../back/mvc/s21_view.h ../frontend/display_window.h ../frontend/mainwindow.h ../gif/gif.hpp ../back/mvc/controller_to_save/gif_controller.h ../back/mvc/controller_to_save/screen_controller.h ../back/mvc/model_to_save/director.h ../back/mvc/model_to_save/path_builder.h ../back/mvc/model_to_save/gif_builder.h ../back/mvc/model_to_save/screen_builder.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../back/mvc/s21_3dparser.h ../back/mvc/s21_model.h ../back/mvc/s21_controller.h ../back/mvc/s21_view.h ../frontend/display_window.h ../frontend/mainwindow.h ../gif/gif.hpp ../back/mvc/controller_to_save/gif_controller.h ../back/mvc/controller_to_save/screen_controller.h ../back/mvc/model_to_save/director.h ../back/mvc/model_to_save/path_builder.h ../back/mvc/model_to_save/gif_builder.h ../back/mvc/model_to_save/screen_builder.h ../back/mvc/controller_projection/controller_projection.h ../back/mvc/model_projection/projection_strategy.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../back/mvc/s21_model.cc ../back/mvc/s21_controller.cc ../back/mvc/s21_view.cc ../frontend/display_window.cpp ../frontend/main.cpp ../frontend/save_settings.cpp ../frontend/mainwindow.cpp ../gif/gif.cpp ../back/mvc/controller_to_save/gif_controller.cc ../back/mvc/controller_to_save/screen_controller.cc $(DISTDIR)/
 	$(COPY_FILE) --parents ../frontend/mainwindow.ui $(DISTDIR)/
 
@@ -483,7 +488,9 @@ display_window.o: ../frontend/display_window.cpp ../frontend/display_window.h \
 		../back/mvc/model_to_save/path_builder.h \
 		../back/mvc/model_to_save/gif_builder.h \
 		../back/mvc/controller_to_save/screen_controller.h \
-		../back/mvc/model_to_save/screen_builder.h
+		../back/mvc/model_to_save/screen_builder.h \
+		../back/mvc/controller_projection/controller_projection.h \
+		../back/mvc/model_projection/projection_strategy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o display_window.o ../frontend/display_window.cpp
 
 main.o: ../frontend/main.cpp ../frontend/mainwindow.h \

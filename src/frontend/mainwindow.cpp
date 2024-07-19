@@ -9,21 +9,13 @@
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
-  // Set up the user interface for the MainWindow
   ui->setupUi(this);
-
-  // Disable the spin box buttons for rotation x, y, and z
   ui->lineEdit_rotation_x->setButtonSymbols(QAbstractSpinBox::NoButtons);
   ui->lineEdit_rotation_y->setButtonSymbols(QAbstractSpinBox::NoButtons);
   ui->lineEdit_rotation_z->setButtonSymbols(QAbstractSpinBox::NoButtons);
 
-  // Set the parameters to their default values
   set_parameters_to_default();
-
-  // Write the default parameter values to the user interface
   write_to_ui();
-
-  // Read the settings and update the user interface accordingly
   readSettings();
 }
 
@@ -49,48 +41,30 @@ void color_normalization(double* array) {
 }
 
 void MainWindow::on_pushButton_apply_changes_clicked() {
-  // Set the background color based on the values of the red, green, and blue
-  // sliders
   ui->display_window->my_data.background_color[0] =
       ui->backgroundColor_red->value();
   ui->display_window->my_data.background_color[1] =
       ui->backgroundColor_green->value();
   ui->display_window->my_data.background_color[2] =
       ui->backgroundColor_blue->value();
-
-  // Set the line color based on the values of the red, green, and blue sliders
   ui->display_window->my_data.line_color[0] = ui->lineColor_red->value();
   ui->display_window->my_data.line_color[1] = ui->lineColor_green->value();
   ui->display_window->my_data.line_color[2] = ui->lineColor_blue->value();
-
-  // Set the point color based on the values of the red, green, and blue sliders
   ui->display_window->my_data.point_color[0] = ui->vertColor_red->value();
   ui->display_window->my_data.point_color[1] = ui->vertColor_green->value();
   ui->display_window->my_data.point_color[2] = ui->vertColor_blue->value();
-
-  // Normalize the background, line, and point colors
   color_normalization(ui->display_window->my_data.background_color);
   color_normalization(ui->display_window->my_data.line_color);
   color_normalization(ui->display_window->my_data.point_color);
-
-  // Set the line width based on the value of the line width input field
   ui->display_window->my_data.line_width =
       ui->lineEdit_line_width->text().toInt();
-
-  // Set the point size based on the value of the point size input field
   ui->display_window->my_data.point_size =
       ui->lineEdit_point_size->text().toInt();
-
-  // Set the projection type based on the selected option in the projection type
-  // combo box
   if (ui->qcombobox_typeProjection->currentText() == "parallel") {
     ui->display_window->my_data.projection_type = PARALLEL;
   } else {
     ui->display_window->my_data.projection_type = CENTRAL;
   }
-
-  // Set the point type based on the selected option in the display vertices
-  // combo box
   if (ui->qcombobox_displayVertices->currentText() == "none") {
     ui->display_window->my_data.point_type = NONE;
   } else if (ui->qcombobox_displayVertices->currentText() == "circle") {
@@ -98,15 +72,11 @@ void MainWindow::on_pushButton_apply_changes_clicked() {
   } else if (ui->qcombobox_displayVertices->currentText() == "square") {
     ui->display_window->my_data.point_type = SQUARE;
   }
-
-  // Set the line type based on the selected option in the edges type combo box
   if (ui->qcombobox_edgesType->currentText() == "solid") {
     ui->display_window->my_data.line_type = SOLID;
   } else {
     ui->display_window->my_data.line_type = DASHED;
   }
-
-  // Update the display window
   ui->display_window->update();
 }
 
@@ -197,7 +167,6 @@ void MainWindow::read_obj_file() {
 }
 
 void MainWindow::write_to_ui() {
-  // Background Color
   ui->backgroundColor_red->setValue(
       ui->display_window->my_data.background_color[0] * 255);
   ui->backgroundColor_green->setValue(
@@ -205,26 +174,22 @@ void MainWindow::write_to_ui() {
   ui->backgroundColor_blue->setValue(
       ui->display_window->my_data.background_color[2] * 255);
 
-  // Line Color
   ui->lineColor_red->setValue(ui->display_window->my_data.line_color[0] * 255);
   ui->lineColor_green->setValue(ui->display_window->my_data.line_color[1] *
                                 255);
   ui->lineColor_blue->setValue(ui->display_window->my_data.line_color[2] * 255);
 
-  // Point Color
   ui->vertColor_red->setValue(ui->display_window->my_data.point_color[0] * 255);
   ui->vertColor_green->setValue(ui->display_window->my_data.point_color[1] *
                                 255);
   ui->vertColor_blue->setValue(ui->display_window->my_data.point_color[2] *
                                255);
 
-  // Sizes
   ui->lineEdit_line_width->setText(
       QString::number(ui->display_window->my_data.line_width));
   ui->lineEdit_point_size->setText(
       QString::number(ui->display_window->my_data.point_size));
 
-  // Comboxes
   ui->qcombobox_typeProjection->setCurrentIndex(
       ui->display_window->my_data.projection_type == PARALLEL ? 0 : 1);
   ui->qcombobox_edgesType->setCurrentIndex(
