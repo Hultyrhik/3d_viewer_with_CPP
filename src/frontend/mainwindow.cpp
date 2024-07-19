@@ -1,12 +1,11 @@
 #include "mainwindow.h"
 
+#include "../back/mvc/s21_3dparser.h"
+#include "../back/mvc/s21_controller.h"
+#include "../back/mvc/s21_model.h"
+#include "../back/mvc/s21_view.h"
 #include "display_window.h"
 #include "ui_mainwindow.h"
-
-#include "../back/mvc/s21_3dparser.h"
-#include "../back/mvc/s21_model.h"
-#include "../back/mvc/s21_controller.h"
-#include "../back/mvc/s21_view.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -162,7 +161,8 @@ void MainWindow::read_obj_file() {
   ui->textBrowser_name_of_file->setText(
       QString::fromUtf8(ui->display_window->my_data.name_of_file.c_str()));
 
-  ui->display_window->model->set_path_of_file( ui->display_window->my_data.path_to_file);
+  ui->display_window->model->set_path_of_file(
+      ui->display_window->my_data.path_to_file);
 
   int status = ui->display_window->view->init_controller();
 

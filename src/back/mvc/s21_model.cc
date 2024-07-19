@@ -1,28 +1,25 @@
-#include <iostream>
-
 #include "s21_model.h"
 
+#include <cmath>
 #include <cstdio>
 #include <cstring>
-#include <cmath>
-
+#include <iostream>
 
 namespace s21 {
-    
+
 int Model::s21_countInit() {
   std::cout << "first line in int Model::s21_countInit()" << std::endl;
   FILE* fp = std::fopen(this->path_of_file_.c_str(), "r");
   std::cout << "After std::fopen" << std::endl;
   if (!fp) {
     std::cout << "In if (!fp)" << std::endl;
-    // std::fclose(fp);
     std::cout << "After fclose(fp)" << std::endl;
     std::perror("Error opening file");
     std::cout << "std::perror" << std::endl;
     return 1;
   }
   char s[200]{};
-    std::cout << "char s[200]{};" << std::endl;
+  std::cout << "char s[200]{};" << std::endl;
   this->s21_zeroingShape();
   while (fgets(s, 200, fp) && s[0]) {
     char c = 0;
@@ -32,21 +29,18 @@ int Model::s21_countInit() {
       this->shape_->countVertexes += 3;
     else if (c == 'f' && s[shift] == ' ') {
       if (s[shift + 1] == '-') {
-         this->shape_->fflag = 1;
+        this->shape_->fflag = 1;
       }
-      s21_addF( this->shape_, s + 1);
+      s21_addF(this->shape_, s + 1);
     }
   }
   std::fclose(fp);
   return 0;
 }
 
-Model::~Model (){
-}
+Model::~Model() {}
 
-void Model::set_path_of_file(std::string path){
-  this->path_of_file_ = path;
-}
+void Model::set_path_of_file(std::string path) { this->path_of_file_ = path; }
 
 void Model::s21_zeroingShape() {
   std::memset(this->shape_->modelName, 0, sizeof(this->shape_->modelName));
@@ -70,7 +64,6 @@ int Model::s21_allocateShape() {
   s21_extractFileName(this->path_of_file_.c_str(), this->shape_->fileName);
   FILE* fpi = std::fopen(this->path_of_file_.c_str(), "r");
   if (!fpi) {
-    std::fclose(fpi);
     std::perror("Error opening file");
     return 1;
   }
@@ -111,7 +104,7 @@ int Model::s21_initShape() {
   std::cout << "After if" << std::endl;
 
   int counter_init = this->s21_countInit();
-    std::cout << "int counter_init = this->s21_countInit(); " << std::endl;
+  std::cout << "int counter_init = this->s21_countInit(); " << std::endl;
   if (!counter_init) counter_init = this->s21_allocateShape();
   if (counter_init) return counter_init;
 
@@ -121,9 +114,11 @@ int Model::s21_initShape() {
 }
 
 void Model::s21_centring() {
-  double minCoord[COORDS] = {this->shape_->vertexes[0], this->shape_->vertexes[1],
+  double minCoord[COORDS] = {this->shape_->vertexes[0],
+                             this->shape_->vertexes[1],
                              this->shape_->vertexes[2]};
-  double maxCoord[COORDS] = {this->shape_->vertexes[0], this->shape_->vertexes[1],
+  double maxCoord[COORDS] = {this->shape_->vertexes[0],
+                             this->shape_->vertexes[1],
                              this->shape_->vertexes[2]};
   // поиск мин и макс координат
   for (unsigned i = 0; i < this->shape_->countVertexes; ++i) {
@@ -138,19 +133,23 @@ void Model::s21_centring() {
     center[i] = (maxCoord[i] + minCoord[i]) / 2;
     maxCoord[i] -= center[i];
     minCoord[i] -= center[i];
-    minScale = minScale > std::fabs(maxCoord[i]) ? std::fabs(maxCoord[i]) : minScale;
-    minScale = minScale > std::fabs(minCoord[i]) ? std::fabs(minCoord[i]) : minScale;
-    maxScale = maxScale < std::fabs(maxCoord[i]) ? std::fabs(maxCoord[i]) : maxScale;
-    maxScale = maxScale < std::fabs(minCoord[i]) ? std::fabs(minCoord[i]) : maxScale;
+    minScale =
+        minScale > std::fabs(maxCoord[i]) ? std::fabs(maxCoord[i]) : minScale;
+    minScale =
+        minScale > std::fabs(minCoord[i]) ? std::fabs(minCoord[i]) : minScale;
+    maxScale =
+        maxScale < std::fabs(maxCoord[i]) ? std::fabs(maxCoord[i]) : maxScale;
+    maxScale =
+        maxScale < std::fabs(minCoord[i]) ? std::fabs(minCoord[i]) : maxScale;
   }
   // шкалирование
-  this->shape_->scale = maxScale >= 1 || minScale < 1e-6 ? 1 / maxScale : 1 / minScale;
+  this->shape_->scale =
+      maxScale >= 1 || minScale < 1e-6 ? 1 / maxScale : 1 / minScale;
   for (unsigned i = 0; i < this->shape_->countVertexes; ++i)
     this->shape_->vertexes[i] =
         (this->shape_->vertexes[i] - center[i % 3]) * this->shape_->scale * 0.8;
   this->shape_->scale = 1;
 }
-
 
 void s21_extractFileName(const char* filePath, char* fileName) {
   const char* lastSlash = std::strrchr(filePath, '/');
@@ -184,15 +183,19 @@ void matrix(double matrix[COORDS][COORDS], double angulus_x, double angulus_y,
   matrix[0][0] = std::cos(angulus_y) * std::cos(angulus_z);
   matrix[0][1] = -std::sin(angulus_z) * std::cos(angulus_y);
   matrix[0][2] = std::sin(angulus_y);
-  matrix[1][0] = std::sin(angulus_x) * std::sin(angulus_y) * std::cos(angulus_z) +
-                 std::sin(angulus_z) * std::cos(angulus_x);
-  matrix[1][1] = -std::sin(angulus_x) * std::sin(angulus_y) * std::sin(angulus_z) +
-                 std::cos(angulus_x) * std::cos(angulus_z);
+  matrix[1][0] =
+      std::sin(angulus_x) * std::sin(angulus_y) * std::cos(angulus_z) +
+      std::sin(angulus_z) * std::cos(angulus_x);
+  matrix[1][1] =
+      -std::sin(angulus_x) * std::sin(angulus_y) * std::sin(angulus_z) +
+      std::cos(angulus_x) * std::cos(angulus_z);
   matrix[1][2] = -std::sin(angulus_x) * std::cos(angulus_y);
-  matrix[2][0] = std::sin(angulus_x) * std::sin(angulus_z) -
-                 std::sin(angulus_y) * std::cos(angulus_x) * std::cos(angulus_z);
-  matrix[2][1] = std::sin(angulus_x) * std::cos(angulus_z) +
-                 std::sin(angulus_y) * std::sin(angulus_z) * std::cos(angulus_x);
+  matrix[2][0] =
+      std::sin(angulus_x) * std::sin(angulus_z) -
+      std::sin(angulus_y) * std::cos(angulus_x) * std::cos(angulus_z);
+  matrix[2][1] =
+      std::sin(angulus_x) * std::cos(angulus_z) +
+      std::sin(angulus_y) * std::sin(angulus_z) * std::cos(angulus_x);
   matrix[2][2] = std::cos(angulus_x) * std::cos(angulus_y);
 }
 
@@ -372,20 +375,20 @@ int s21_shifting_my(Shape* shape, double coord, s21_Axis axis) {
   return 0;
 }
 
-void s21_add_elem_double(double* array, unsigned int& count, double elem){
-    count++;                           
-    array[count-1] = elem;         
+void s21_add_elem_double(double* array, unsigned int& count, double elem) {
+  count++;
+  array[count - 1] = elem;
 }
 
-void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem){
-    count++;                           
-    array[count-1] = elem;  
+void s21_add_elem_int(unsigned int* array, unsigned int& count, double elem) {
+  count++;
+  array[count - 1] = elem;
 }
 
-void s21_check_and_fix(long long int& elem, int flag, unsigned int countV) {                              
-    if (flag == 1 && countV != 0) {       
-      elem += countV + 1;                 
-    }                                         
+void s21_check_and_fix(long long int& elem, int flag, unsigned int countV) {
+  if (flag == 1 && countV != 0) {
+    elem += countV + 1;
+  }
 }
 
 }  // namespace s21

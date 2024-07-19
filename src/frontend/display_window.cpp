@@ -3,8 +3,8 @@
 #include <cmath>
 
 #include "../back/mvc/s21_3dparser.h"
-#include "../back/mvc/s21_model.h"
 #include "../back/mvc/s21_controller.h"
+#include "../back/mvc/s21_model.h"
 #include "../back/mvc/s21_view.h"
 
 QT_BEGIN_NAMESPACE
@@ -36,7 +36,7 @@ void Display_window::renderOpenGLScene() {
     glEnable(GL_DEPTH_TEST);
 
     s21::figure_rotation(shape, my_data.rotation[0], my_data.rotation[1],
-                    my_data.rotation[2]);
+                         my_data.rotation[2]);
 
     s21::s21_setScale(shape, (my_data.scale[0] / 10));
 
@@ -142,12 +142,12 @@ void Display_window::saveGIF() {
 
 Display_window::~Display_window() {
   s21::s21_clearShape(shape);
-  
+
   if (shape) {
     delete shape;
   }
   if (view) {
-      delete view;
+    delete view;
   }
 
   if (controller) {

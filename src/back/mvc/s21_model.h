@@ -8,32 +8,31 @@
 namespace s21 {
 
 class Model {
-private:
-    Shape* shape_;
-    std::string path_of_file_;
+ private:
+  Shape* shape_;
+  std::string path_of_file_;
 
+ public:
+  Model(Shape* ptr) : shape_{ptr} {}
+  ~Model();
 
-public:
-    Model(Shape* ptr) : shape_{ptr}  {}
-    ~Model();
+  void set_path_of_file(std::string path);
 
-    void set_path_of_file(std::string path);
+  int s21_countInit();
 
-    int s21_countInit();
+  void s21_zeroingShape();
 
-    void s21_zeroingShape();
+  int s21_allocateShape();
 
-    int s21_allocateShape();
+  int s21_initShape();
 
-    int s21_initShape();
+  void s21_centring();
 
-    void s21_centring();
+  void s21_clearModelShape();
 
-    void s21_clearModelShape();
+};  // class Model
 
-}; // class Model
-
- void s21_clearShape(Shape* shape);
+void s21_clearShape(Shape* shape);
 
 void s21_add_elem_double(double* array, unsigned int& count, double elem);
 
@@ -58,15 +57,14 @@ int s21_shifting(Shape* shape, double coord, s21_Axis axis);
 int s21_shifting_my(Shape* shape, double coord, s21_Axis axis);
 
 void matrix(double matrix[COORDS][COORDS], double angulus_x, double angulus_y,
-            double angulus_z) ;
+            double angulus_z);
 
 void rotate_point_with_matrix(double* vertexes,
                               double rotation_matrix[COORDS][COORDS]);
 
 void figure_rotation(Shape* shape, double angulus_x, double angulus_y,
-                     double angulus_z) ;
+                     double angulus_z);
 
-} // namespace s21
-
+}  // namespace s21
 
 #endif

@@ -1,7 +1,6 @@
 #ifndef SRC_3DPARSER_H
 #define SRC_3DPARSER_H
 
-
 #ifndef M_PI
 /**
  * @brief Definition for Valgrind memory testing on Linux distribution,
@@ -9,7 +8,6 @@
  */
 #define M_PI 3.14159265358979323846
 #endif
-
 
 #define MAX_NAME_LENGTH 100
 #define COORDS 3
@@ -50,7 +48,5 @@ typedef struct {
  * @brief Перечислимый тип для координатных осей
  */
 typedef enum Axis_ { AXIS_X, AXIS_Y, AXIS_Z } s21_Axis;
-
-
 
 #endif  // SRC_3DPARSER_H

@@ -10,6 +10,9 @@ PROJECT_NAME= 3DViewer-v2.0
 SRC_FILES = $(wildcard back/mvc/s21*.cc)
 HEADER_FILES = $(wildcard back/mvc/s21*.h)
 TEST_FILES = $(wildcard back/test/*.cc)
+FRONT_FILES_CC = $(wildcard frontend/*.cpp)
+FRONT_FILES_H = $(wildcard frontend/*.h)
+ALL_FILES = $(TEST_FILES) $(HEADER_FILES) $(SRC_FILES) $(FRONT_FILES_CC) $(FRONT_FILES_H)
 
 LEAK_PROGRAMM = valgrind
 
@@ -93,3 +96,13 @@ dist:
 	cp -r frontend back  gif $(PROJECT_NAME)
 	tar cvzf $(PROJECT_NAME).tgz $(PROJECT_NAME)
 	rm -rf $(PROJECT_NAME)
+
+clangMakeRight:
+	# cp ../materials/linters/.clang-format ./
+	clang-format -style=Google -i $(ALL_FILES)
+	clang-format -style=Google --verbose -n $(ALL_FILES)
+
+clangTest:
+	# cp ../materials/linters/.clang-format ./
+	clang-format -style=Google --verbose -n $(ALL_FILES)
+

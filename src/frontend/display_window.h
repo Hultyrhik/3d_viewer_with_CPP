@@ -22,13 +22,10 @@
 #include <string>
 #include <thread>
 
-#include "./../gif/gif.hpp"
-#include "mainwindow.h"
-
-
 #include "../back/mvc/s21_3dparser.h"
 #include "../back/mvc/s21_view.h"
-
+#include "./../gif/gif.hpp"
+#include "mainwindow.h"
 
 using namespace Qt;
 
@@ -84,13 +81,13 @@ class Display_window : public QOpenGLWidget {
    * @brief Constructor for the Display_window class.
    * @param parent The parent widget.
    */
-  explicit Display_window(QWidget *parent = nullptr);
+  explicit Display_window(QWidget* parent = nullptr);
 
   s21::Model* model;
   s21::Controller* controller;
   s21::View* view;
-  Shape *shape;             /**< The shape object. */
-  Shape *init_shape;        /**< The initial shape object. */
+  Shape* shape;             /**< The shape object. */
+  Shape* init_shape;        /**< The initial shape object. */
   Settings_storage my_data; /**< The settings storage object. */
   bool is_ready_to_draw;    /**< Flag indicating if it is the first launch. */
 

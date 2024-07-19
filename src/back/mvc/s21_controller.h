@@ -6,15 +6,15 @@
 namespace s21 {
 
 class Controller {
-private:
-    Model* model_;
-public:
-    Controller(Model* other): model_{other}{}
+ private:
+  Model* model_;
 
-    int init_model();
+ public:
+  Controller(Model* other) : model_{other} {}
+
+  int init_model();
 };
 
-} // namespace s21
-
+}  // namespace s21
 
 #endif
