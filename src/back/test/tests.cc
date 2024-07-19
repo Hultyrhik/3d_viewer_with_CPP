@@ -160,6 +160,369 @@ TEST(init_shape, test_init_invalid_path) {
   model.s21_clearModelShape();
 }
 
+
+TEST(rotate_shape, test_rotate_cube_x) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-0.800000, -0.000000, -1.131371, -0.800000, -1.131371, 0.000000, -0.800000, 1.131371, -0.000000, -0.800000, 0.000000, 1.131371, 0.800000, -0.000000, -1.131371, 0.800000, -1.131371, 0.000000, 0.800000, 1.131371, -0.000000, 0.800000, 0.000000, 1.131371};
+
+  s21::figure_rotation(&shape, 45.0, 0,0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(rotate_shape, test_rotate_cube_y) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-0.800000, -0.800000, 0.800000, 0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, -0.800000};
+        
+  s21::figure_rotation(&shape, 0, 90.0,0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(rotate_shape, test_rotate_cube_xyz) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-0.292820, -1.092820, -0.800000, -0.292820, -1.092820, 0.800000, -1.092820, 0.292820, -0.800000, -1.092820, 0.292820, 0.800000, 1.092820, -0.292820, -0.800000, 1.092820, -0.292820, 0.800000, 0.292820, 1.092820, -0.800000, 0.292820, 1.092820, 0.800000};
+             
+  s21::figure_rotation(&shape, 0, 0.0, 30.0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(rotate_shape, test_rotate_cube_z) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {0.000000, -1.379796, 0.127135, 1.131371, -0.400000, 0.692820, -1.131371, -0.400000, 0.692820, -0.000000, 0.579796, 1.258506, 0.000000, -0.579796, -1.258506, 1.131371, 0.400000, -0.692820, -1.131371, 0.400000, -0.692820, -0.000000, 1.379796, -0.127135};
+                   
+  s21::figure_rotation(&shape, 45.0, 0.0, 0.0);
+  s21::figure_rotation(&shape, 0, 60.0, 0.0);
+  s21::figure_rotation(&shape, 0, 0.0, 90.0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(scale_shape, test_scale_cube_plus) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-2.400000, -2.400000, -2.400000, -2.400000, -2.400000, 2.400000, -2.400000, 2.400000, -2.400000, -2.400000, 2.400000, 2.400000, 2.400000, -2.400000, -2.400000, 2.400000, -2.400000, 2.400000, 2.400000, 2.400000, -2.400000, 2.400000, 2.400000, 2.400000};
+  s21::s21_setScale(&shape, 3);               
+
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(scale_shape, test_scale_cube_plus2) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-8.080000, -8.080000, -8.080000, -8.080000, -8.080000, 8.080000, -8.080000, 8.080000, -8.080000, -8.080000, 8.080000, 8.080000, 8.080000, -8.080000, -8.080000, 8.080000, -8.080000, 8.080000, 8.080000, 8.080000, -8.080000, 8.080000, 8.080000, 8.080000};
+        s21::s21_setScale(&shape, 10.1);               
+
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(scale_shape, test_scale_cube_plus3) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-0.800080, -0.800080, -0.800080, -0.800080, -0.800080, 0.800080, -0.800080, 0.800080, -0.800080, -0.800080, 0.800080, 0.800080, 0.800080, -0.800080, -0.800080, 0.800080, -0.800080, 0.800080, 0.800080, 0.800080, -0.800080, 0.800080, 0.800080, 0.800080};
+              s21::s21_setScale(&shape, 1.0001);               
+
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(drifting_shape, test_drifting_cube_plus_x) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {1.200000, -0.800000, -0.800000, 1.200000, -0.800000, 0.800000, 1.200000,  0.800000, -0.800000, 1.200000,  0.800000,  0.800000, 2.800000, -0.800000, -0.800000, 2.800000, -0.800000,  0.800000, 2.800000,  0.800000, -0.800000, 2.800000,  0.800000,  0.800000};
+  s21::s21_shifting(&shape, 2, AXIS_X);               
+
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(drifting_shape, test_drifting_cube_plus_y) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-0.800000, 9.200600, -0.800000, -0.800000,   9.200600,   0.800000, -0.800000,  10.800600,  -0.800000, -0.800000,  10.800600,   0.800000,  0.800000,   9.200600,  -0.800000,  0.800000,   9.200600,   0.800000,  0.800000,  10.800600,  -0.800000,  0.800000,  10.800600,   0.800000};
+        s21::s21_shifting(&shape, 10.0006, AXIS_Y);               
+
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
+TEST(drifting_shape, test_drifting_cube_plus_z) {
+  Shape shape{};
+  double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, -0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, -0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000, -0.800000, 0.800000, 0.800000, 0.800000};
+
+  std::string path = "obj/cube.obj";
+
+  s21::Model model(&shape);
+  s21::Controller controller(&model);
+  s21::View view(&controller);
+
+  model.set_path_of_file(path);
+
+  int status = view.init_controller();
+
+  EXPECT_EQ(status, 0);
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array[i], 1e-6);
+  }
+
+  double array2[24] = {-0.800000,  -0.799900,  -0.800000, -0.800000,  -0.799900,   0.800000, -0.800000,   0.800100,  -0.800000, -0.800000,   0.800100,   0.800000,  0.800000,  -0.799900,  -0.800000,  0.800000,  -0.799900,   0.800000,  0.800000,   0.800100,  -0.800000,  0.800000,   0.800100,   0.800000, };
+              s21::s21_shifting(&shape, 0.0001, AXIS_Y);               
+
+  EXPECT_EQ(shape.countLines, 60);
+  EXPECT_EQ(shape.countVertexes, 24);
+  EXPECT_EQ(shape.countV, 8);
+  EXPECT_EQ(shape.countL, 10);
+  for (unsigned int i = 0; i < shape.countVertexes; i++) {
+    EXPECT_NEAR(shape.vertexes[i], array2[i], 1e-6);
+  }
+  model.s21_clearModelShape();
+}
+
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
