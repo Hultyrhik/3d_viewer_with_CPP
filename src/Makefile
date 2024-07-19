@@ -1,16 +1,15 @@
 GCC = g++
 CFLAGS = -Wall -Werror -Wextra
 
-FLAG_GCOV = --coverage
 WORK_DIR=frontend
-INST_DIR=frontend/3DViewer-v1.0
-TESTFILE = back/test/3DViewer-v1.0
+INST_DIR=frontend/3DViewer-v2.0
+TESTFILE = back/test/3DViewer-v2.0
 
-PROJECT_NAME= 3DViewer-v1.0
+PROJECT_NAME= 3DViewer-v2.0
 
 SRC_FILES = $(wildcard back/mvc/s21*.cc)
 HEADER_FILES = $(wildcard back/mvc/s21*.h)
-TEST_FILES = $(wildcard back/test/s21*.cc)
+TEST_FILES = $(wildcard back/test/*.cc)
 
 LEAK_PROGRAMM = valgrind
 
@@ -28,7 +27,9 @@ endif
 all: gcov_report install dvi run
 
 tests: clean
-	bash back/test/check_test.sh $(GCC) "$(CFLAGS)" "$(LIBS_OS_CHECK)" $(FLAG_GCOV)
+	g++ -Wall -g -pthread $(CFLAGS) $(HEADER_FILES) $(SRC_FILES) $(TEST_FILES) -lgtest_main  -lgtest -lpthread -o test
+	./test
+
 
 clean: uninstall
 	-rm -rf *.txt back/test/*.o back/test/*.gcno back/test/*.gcda back/test/*.c back/test/*.info
@@ -71,18 +72,6 @@ leak_test: clean tests
 	$(LEAK_PROGRAMM) back/test/test_back_shape_test
 	$(LEAK_PROGRAMM) back/test/test_corrie_test
 
-
-gcov_report: tests
-	bash back/test/gcov_print.sh
-	@gcov back/test/s21_*.gcda > gcov_test_log.txt
-	@lcov -t "3DViewer-v1.0" -o $(TESTFILE).info -c -d . > gcov_test_log.txt
-	genhtml -o report $(TESTFILE).info
-	@-rm -rf back/test/*.o back/test/*.gcno back/test/*.gcda back/test/*.c
-	@-rm -rf back/test/test_back_shape_test back/test/test_corrie_test back/test/*.info
-
-
-open_report:
-	open ./report/back/index.html
 
 dvi:
 	# sudo apt-get install texinfo

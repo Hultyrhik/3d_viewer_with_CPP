@@ -11,7 +11,7 @@ private:
 public:
     Controller(Model* other): model_{other}{}
 
-    void init_model();
+    int init_model();
 };
 
 } // namespace s21

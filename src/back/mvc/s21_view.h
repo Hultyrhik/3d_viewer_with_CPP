@@ -9,7 +9,7 @@ namespace s21 {
             Controller* controller_;
         public:
             View(Controller* other): controller_{other}{}
-            void init_controller(); 
+            int init_controller(); 
     };
 } // namespace s21
 

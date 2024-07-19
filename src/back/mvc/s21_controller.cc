@@ -3,9 +3,9 @@
 
 
 namespace s21 {
-    void Controller::init_model(){
+    int Controller::init_model(){
         this->model_->s21_clearModelShape();
         this->model_->s21_zeroingShape();
-        this->model_->s21_initShape();
+        return this->model_->s21_initShape();
     }
 }  // namespace s21
