@@ -8,18 +8,17 @@
 namespace s21 {
 
 int Model::s21_countInit() {
-  std::cout << "first line in int Model::s21_countInit()" << std::endl;
+
   FILE* fp = std::fopen(this->path_of_file_.c_str(), "r");
-  std::cout << "After std::fopen" << std::endl;
+
   if (!fp) {
-    std::cout << "In if (!fp)" << std::endl;
-    std::cout << "After fclose(fp)" << std::endl;
+
     std::perror("Error opening file");
-    std::cout << "std::perror" << std::endl;
+
     return 1;
   }
   char s[200]{};
-  std::cout << "char s[200]{};" << std::endl;
+
   this->s21_zeroingShape();
   while (fgets(s, 200, fp) && s[0]) {
     char c = 0;
@@ -101,10 +100,7 @@ int Model::s21_initShape() {
   /* Проверка входных ошибок */
   if (!this->shape_ || !this->path_of_file_.c_str()) return 1;
 
-  std::cout << "After if" << std::endl;
-
   int counter_init = this->s21_countInit();
-  std::cout << "int counter_init = this->s21_countInit(); " << std::endl;
   if (!counter_init) counter_init = this->s21_allocateShape();
   if (counter_init) return counter_init;
 

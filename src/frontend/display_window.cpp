@@ -15,7 +15,7 @@ class MainWindow;
 QT_END_NAMESPACE
 
 Display_window::Display_window(QWidget* parent) : QOpenGLWidget(parent) {
-  shape = new Shape;
+  shape = new Shape{};
   this->model = new s21::Model(shape);
   this->controller = new s21::Controller(this->model);
   this->view = new s21::View(this->controller);
@@ -104,17 +104,16 @@ void Display_window::resizeGL(int w, int h) { glViewport(0, 0, w, h); }
 Display_window::~Display_window() {
   s21::s21_clearShape(shape);
 
-  if (shape) {
-    delete shape;
-  }
   if (view) {
     delete view;
   }
-
   if (controller) {
     delete controller;
   }
   if (model) {
     delete model;
+  }
+  if (shape) {
+    delete shape;
   }
 }

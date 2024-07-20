@@ -83,6 +83,7 @@ clean: uninstall
 	@rm -rf ./manual
 	@rm -rf ../misc/gifs
 	@rm -rf ../misc/imgs
+	@rm -rf settings_demo.conf
 
 dist: $(DIST_NAME)
 
