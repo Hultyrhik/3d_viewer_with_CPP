@@ -62,7 +62,7 @@ install:
 		echo -n "\033[34m.\033[0m"; \
 		sleep 0.5; \
 	done
-	echo ""
+	@echo ""
 	@./cat.sh "\033[34m===>    Installation has ended             \033[0m" 10
 	@chmod +x ./$(PROJECT)/$(PROJECT) > /dev/null 2>&1
 	@rm -f ${HOME}/$(PROJECT) && cp ./$(PROJECT)/$(PROJECT) ${HOME}/$(PROJECT)
