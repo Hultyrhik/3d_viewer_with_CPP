@@ -4,10 +4,20 @@
 #include "path_builder.h"
 
 namespace s21 {
+/**
+ * @brief Class for creating the path for saving a screen image.
+ */
 class ScreenBuilder : public FilePathBuilder {
  public:
+  /**
+   * @brief Construct a new ScreenBuilder object.
+   *
+   * @param modelName The name of the model.
+   * @param fileType The type of the file (e.g. ".png").
+   */
   ScreenBuilder(const QString& modelName, const QString& fileType)
       : modelName(modelName), fileType(fileType) {}
+
   void setSaveDirectory() override {
     QString saveDirectory = "../../misc/img/";
     QDir dir(saveDirectory);
@@ -16,6 +26,7 @@ class ScreenBuilder : public FilePathBuilder {
     }
     filePath = saveDirectory + "/";
   }
+
   void setFileName() override {
     QTime date = QTime::currentTime();
     filePath.append(date.toString("hh_mm_ss_"));
@@ -24,7 +35,14 @@ class ScreenBuilder : public FilePathBuilder {
   }
 
  private:
+  /**
+   * @brief The name of the model.
+   */
   QString modelName;
+
+  /**
+   * @brief The type of the file (e.g. ".png", ".jpg").
+   */
   QString fileType;
 };
 

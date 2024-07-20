@@ -4,9 +4,18 @@
 #include "path_builder.h"
 
 namespace s21 {
+/**
+ * @brief Class for creating the path for saving a GIF image.
+ */
 class GIFBuilder : public FilePathBuilder {
  public:
-  GIFBuilder(const QString& modelName) : modelName(modelName) {}
+  /**
+   * @brief Construct a new GIFBuilder object.
+   *
+   * @param modelName The name of the model.
+   */
+  explicit GIFBuilder(const QString& modelName) : modelName(modelName) {}
+
   void setSaveDirectory() override {
     QString saveDirectory = "../../misc/gif/";
     QDir dir(saveDirectory);
@@ -15,6 +24,7 @@ class GIFBuilder : public FilePathBuilder {
     }
     filePath = saveDirectory + "/";
   }
+
   void setFileName() override {
     QString fileType = ".gif";
     QTime date = QTime::currentTime();
@@ -24,6 +34,9 @@ class GIFBuilder : public FilePathBuilder {
   }
 
  private:
+  /**
+   * @brief The name of the model.
+   */
   QString modelName;
 };
 

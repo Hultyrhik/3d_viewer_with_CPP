@@ -91,7 +91,6 @@ $(DIST_NAME):
 	@echo "Архив успешно создан: $(DIST_NAME)"
 
 dvi:
-	@doxygen Doxyfile
 	# sudo apt-get install texinfo
 	@makeinfo ./manual.texi --html
 	@if [ -e "gif/animation.gif" ]; then \
@@ -101,3 +100,4 @@ dvi:
 		echo "Файл animation.gif не найден в директории gif."; \
 	fi
 	@open ./manual/index.html
+	@doxygen Doxyfile
