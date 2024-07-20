@@ -15,7 +15,7 @@ class MainWindow;
 QT_END_NAMESPACE
 
 Display_window::Display_window(QWidget* parent) : QOpenGLWidget(parent) {
-  shape = new Shape{};
+  shape = new s21::Shape{};
   this->model = new s21::Model(shape);
   this->controller = new s21::Controller(this->model);
   this->view = new s21::View(this->controller);
@@ -41,9 +41,9 @@ void Display_window::renderOpenGLScene() {
 
     s21::s21_setScale(shape, (my_data.scale[0] / 10));
 
-    s21::s21_shifting(shape, (my_data.translation[0] / 10), AXIS_X);
-    s21::s21_shifting(shape, (my_data.translation[1] / 10), AXIS_Y);
-    s21::s21_shifting(shape, (my_data.translation[2] / 10), AXIS_Z);
+    s21::s21_shifting(shape, (my_data.translation[0] / 10), s21::AXIS_X);
+    s21::s21_shifting(shape, (my_data.translation[1] / 10), s21::AXIS_Y);
+    s21::s21_shifting(shape, (my_data.translation[2] / 10), s21::AXIS_Z);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();

@@ -16,7 +16,7 @@ TEST_OBJ = $(patsubst %.cc, %.o, $(TEST_SOURCES))
 DIST_NAME = $(PROJECT)_$(shell date +%Y%m%d).tar.gz
 
 # --------------------------------- TASKS -------------------------------------------- #
-all: test
+all: tests
 
 %.o: %.cс
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -28,7 +28,7 @@ $(LIBS): $(OBJ_LIBRARY)
 cat:
 	@chmod +x cat.sh
 
-test: $(LIBS) $(TEST_OBJ)
+tests: $(LIBS) $(TEST_OBJ)
 	@$(CC) $(CFLAGS) $(TEST_OBJ) $(LIBS) -o test.out $(LDFLAGS)
 	@rm -f ./back/test/*.o ./back/mvc/*.o
 	@./test.out > test_results.txt
@@ -46,7 +46,7 @@ style-i:
 	@clang-format -i -style=Google */*.h */*/*.h */*/*.cc */*.cpp
 	@if [ $$? -eq 0 ]; then ./cat.sh "\033[0;32m  STYLE IS C-LANG FORMATTED  \033[0m" 10; else ./cat.sh "\033[0;31m  STYLE_MAKE FAILED  \033[0m" 10; fi
 
-valgrind: test
+valgrind: tests
 	@valgrind --tool=memcheck --leak-check=yes ./test.out 2>&1 | grep -E "ERROR SUMMARY:" > valgrind_summary.txt; \
 	if [ $$? -eq 0 ]; then ./cat.sh "\033[0;32m  VALGRIND_TEST PASSED: look valgrind_summary.txt  \033[0m" 30; else ./cat.sh -r "\033[0;31m  VALGRIND_TEST FAILED: look valgrind_summary.txt  \033[0m" 30; cat valgrind_summary.txt; fi;
 

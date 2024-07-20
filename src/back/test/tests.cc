@@ -6,7 +6,7 @@
 #include "../mvc/s21_view.h"
 
 TEST(init_shape, test_init_cube) {
-  Shape cube{};
+  s21::Shape cube{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -36,7 +36,7 @@ TEST(init_shape, test_init_cube) {
 }
 
 TEST(init_shape, test_init_tetrahedron) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[114] = {
       0.000000,  -0.230941, 0.669197,  -0.078384, -0.185686, 0.509197,
       -0.058788, -0.264882, 0.573197,  -0.741212, -0.658879, -0.541197,
@@ -81,7 +81,7 @@ TEST(init_shape, test_init_tetrahedron) {
 }
 
 TEST(init_shape, test_init_invalid_file_format) {
-  Shape shape{};
+  s21::Shape shape{};
   std::string path = "obj/invalid.obj";
 
   s21::Model model(&shape);
@@ -97,7 +97,7 @@ TEST(init_shape, test_init_invalid_file_format) {
 }
 
 TEST(init_shape, test_init_file_missing1) {
-  Shape shape{};
+  s21::Shape shape{};
   std::string path = "obj/file.obj";
 
   s21::Model model(&shape);
@@ -113,7 +113,7 @@ TEST(init_shape, test_init_file_missing1) {
 }
 
 TEST(init_shape, test_init_file_missing2) {
-  Shape shape{};
+  s21::Shape shape{};
   std::string path = "file.txt";
 
   s21::Model model(&shape);
@@ -129,7 +129,7 @@ TEST(init_shape, test_init_file_missing2) {
 }
 
 TEST(init_shape, test_init_empty_file) {
-  Shape shape{};
+  s21::Shape shape{};
   std::string path = "obj/empty.obj";
 
   s21::Model model(&shape);
@@ -145,7 +145,7 @@ TEST(init_shape, test_init_empty_file) {
 }
 
 TEST(init_shape, test_init_invalid_path) {
-  Shape shape{};
+  s21::Shape shape{};
   std::string path = "obj/b/../obj/lobg/cube.obj";
 
   s21::Model model(&shape);
@@ -161,7 +161,7 @@ TEST(init_shape, test_init_invalid_path) {
 }
 
 TEST(rotate_shape, test_rotate_cube_x) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -205,7 +205,7 @@ TEST(rotate_shape, test_rotate_cube_x) {
 }
 
 TEST(rotate_shape, test_rotate_cube_y) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -249,7 +249,7 @@ TEST(rotate_shape, test_rotate_cube_y) {
 }
 
 TEST(rotate_shape, test_rotate_cube_xyz) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -293,7 +293,7 @@ TEST(rotate_shape, test_rotate_cube_xyz) {
 }
 
 TEST(rotate_shape, test_rotate_cube_z) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -339,7 +339,7 @@ TEST(rotate_shape, test_rotate_cube_z) {
 }
 
 TEST(scale_shape, test_scale_cube_plus) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -383,7 +383,7 @@ TEST(scale_shape, test_scale_cube_plus) {
 }
 
 TEST(scale_shape, test_scale_cube_plus2) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -427,7 +427,7 @@ TEST(scale_shape, test_scale_cube_plus2) {
 }
 
 TEST(scale_shape, test_scale_cube_plus3) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -471,7 +471,7 @@ TEST(scale_shape, test_scale_cube_plus3) {
 }
 
 TEST(drifting_shape, test_drifting_cube_plus_x) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -502,7 +502,7 @@ TEST(drifting_shape, test_drifting_cube_plus_x) {
                        0.800000,  0.800000,  2.800000,  -0.800000, -0.800000,
                        2.800000,  -0.800000, 0.800000,  2.800000,  0.800000,
                        -0.800000, 2.800000,  0.800000,  0.800000};
-  s21::s21_shifting(&shape, 2, AXIS_X);
+  s21::s21_shifting(&shape, 2, s21::AXIS_X);
 
   EXPECT_EQ(shape.countLines, 60);
   EXPECT_EQ(shape.countVertexes, 24);
@@ -515,7 +515,7 @@ TEST(drifting_shape, test_drifting_cube_plus_x) {
 }
 
 TEST(drifting_shape, test_drifting_cube_plus_y) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -546,7 +546,7 @@ TEST(drifting_shape, test_drifting_cube_plus_y) {
                        10.800600, 0.800000,  0.800000,  9.200600,  -0.800000,
                        0.800000,  9.200600,  0.800000,  0.800000,  10.800600,
                        -0.800000, 0.800000,  10.800600, 0.800000};
-  s21::s21_shifting(&shape, 10.0006, AXIS_Y);
+  s21::s21_shifting(&shape, 10.0006, s21::AXIS_Y);
 
   EXPECT_EQ(shape.countLines, 60);
   EXPECT_EQ(shape.countVertexes, 24);
@@ -559,7 +559,7 @@ TEST(drifting_shape, test_drifting_cube_plus_y) {
 }
 
 TEST(drifting_shape, test_drifting_cube_plus_z) {
-  Shape shape{};
+  s21::Shape shape{};
   double array[24] = {-0.800000, -0.800000, -0.800000, -0.800000, -0.800000,
                       0.800000,  -0.800000, 0.800000,  -0.800000, -0.800000,
                       0.800000,  0.800000,  0.800000,  -0.800000, -0.800000,
@@ -591,7 +591,7 @@ TEST(drifting_shape, test_drifting_cube_plus_z) {
       0.800000,  -0.799900, -0.800000, 0.800000,  -0.799900, 0.800000,
       0.800000,  0.800100,  -0.800000, 0.800000,  0.800100,  0.800000,
   };
-  s21::s21_shifting(&shape, 0.0001, AXIS_Y);
+  s21::s21_shifting(&shape, 0.0001, s21::AXIS_Y);
 
   EXPECT_EQ(shape.countLines, 60);
   EXPECT_EQ(shape.countVertexes, 24);

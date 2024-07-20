@@ -12,6 +12,8 @@
 #define MAX_NAME_LENGTH 100
 #define COORDS 3
 
+namespace s21 {
+
 /**
  * @brief Структура для хранения элементов фигуры
  */
@@ -49,4 +51,6 @@ typedef struct {
  */
 typedef enum Axis_ { AXIS_X, AXIS_Y, AXIS_Z } s21_Axis;
 
+
+}
 #endif  // SRC_3DPARSER_H

@@ -86,8 +86,8 @@ class Display_window : public QOpenGLWidget {
   s21::Model* model = nullptr;
   s21::Controller* controller = nullptr;
   s21::View* view = nullptr;
-  Shape* shape = nullptr;             /**< The shape object. */
-  Shape* init_shape = nullptr;        /**< The initial shape object. */
+  s21::Shape* shape = nullptr;             /**< The shape object. */
+  s21::Shape* init_shape = nullptr;        /**< The initial shape object. */
   Settings_storage my_data; /**< The settings storage object. */
   bool is_ready_to_draw;    /**< Flag indicating if it is the first launch. */
 
