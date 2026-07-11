@@ -65,5 +65,7 @@
         "set": "cpp",
         "iostream": "cpp"
     },
-        "C_Cpp.errorSquiggles": "enabled"
+        "C_Cpp.errorSquiggles": "enabled",
+        "gigacode.inline": false,
+        "gigacode.common.wholeLineCompletion": false
 }
